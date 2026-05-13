@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evan Orofino — Développeur Web Full-Stack | Lyon</title>
+    <meta name="description" content="Développeur Web Full-Stack à Lyon. PHP, Symfony, MySQL, JavaScript. Création de sites web et applications sur mesure.">
+    <meta name="keywords" content="développeur web, freelance, Lyon, PHP, Symfony, MySQL, JavaScript, Bootstrap">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Evan Orofino — Développeur Web Full-Stack">
+    <meta property="og:description" content="Développeur web freelance à Lyon. Sites sur mesure, applications web, e-commerce.">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ================== NAVIGATION ================== -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-bracket">&lt;</span>Evan<span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact" class="nav-cta">Me contacter</a></li>
+            </ul>
+            <button class="burger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================== HERO ================== -->
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <p class="hero-greeting">👋 Salut, moi c'est</p>
+                <h1 class="hero-title">Evan Orofino</h1>
+                <h2 class="hero-subtitle">Développeur Web Full-Stack</h2>
+                <p class="hero-description">
+                    Je conçois et développe des sites web et applications sur mesure pour vos besoins.
+                    Basé à <strong>Lyon</strong>, disponible en freelance partout en France.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+                    <a href="#contact" class="btn btn-secondary">Discuter d'un projet</a>
+                </div>
+                <div class="hero-tech">
+                    <span class="tech-pill">PHP</span>
+                    <span class="tech-pill">Symfony</span>
+                    <span class="tech-pill">MySQL</span>
+                    <span class="tech-pill">MongoDB</span>
+                    <span class="tech-pill">JavaScript</span>
+                    <span class="tech-pill">Bootstrap</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-filename">evan.php</span>
+                    </div>
+                    <pre class="code-body"><code><span class="tk-tag">&lt;?php</span>
+
+<span class="tk-keyword">class</span> <span class="tk-class">Evan</span> {
+    <span class="tk-keyword">public</span> <span class="tk-var">$role</span>      = <span class="tk-string">'Dev Web'</span>;
+    <span class="tk-keyword">public</span> <span class="tk-var">$location</span>  = <span class="tk-string">'Lyon, FR'</span>;
+    <span class="tk-keyword">public</span> <span class="tk-var">$status</span>    = <span class="tk-string">'Disponible'</span>;
+    <span class="tk-keyword">public</span> <span class="tk-var">$mission</span>   = <span class="tk-string">'Vos idées</span>
+                          <span class="tk-string">en code propre.'</span>;
+
+    <span class="tk-keyword">public function</span> <span class="tk-fn">contact</span>() {
+        <span class="tk-keyword">return</span> <span class="tk-string">'evanorofino.pro@gmail.com'</span>;
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator" aria-label="Scroll vers le bas">
+            <span></span>
+        </a>
+    </header>
+
+    <!-- ================== À PROPOS ================== -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01 // À propos</span>
+                <h2 class="section-title">Le développeur derrière le code</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Étudiant en formation <strong>Développeur Web et Web Mobile (DWWM)</strong> chez Studi,
+                        je me forme intensivement aux métiers du développement web full-stack.
+                    </p>
+                    <p>
+                        Mon approche : <strong>du code propre, des projets livrés dans les temps,
+                        et une communication claire</strong>. Je travaille en méthode agile (Scrum/Kanban)
+                        et utilise les outils modernes du métier (Git, Docker, MVC).
+                    </p>
+                    <p>
+                        Je suis <strong>auto-entrepreneur</strong> et disponible pour des missions ponctuelles
+                        (sites vitrines, intégrations, e-commerce) ou pour de la <strong>maintenance mensuelle</strong>
+                        de vos projets web.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Projets full-stack livrés</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3 800+</span>
+                        <span class="stat-label">Lignes de PHP écrites</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Routes testées HTTP 200</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Cafés bus en codant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================== COMPÉTENCES ================== -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">02 // Stack technique</span>
+                <h2 class="section-title">Ce que je maîtrise</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Back-end</h3>
+                    <ul>
+                        <li>PHP 8 / Symfony</li>
+                        <li>Architecture MVC</li>
+                        <li>API REST</li>
+                        <li>Composer</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Front-end</h3>
+                    <ul>
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript ES6+</li>
+                        <li>Bootstrap 5</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Bases de données</h3>
+                    <ul>
+                        <li>MySQL / MariaDB</li>
+                        <li>MongoDB</li>
+                        <li>Modélisation MCD</li>
+                        <li>Requêtes optimisées</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Outils & DevOps</h3>
+                    <ul>
+                        <li>Git / GitHub</li>
+                        <li>Docker</li>
+                        <li>Linux (SSH)</li>
+                        <li>Méthode Agile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================== PROJETS ================== -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 // Réalisations</span>
+                <h2 class="section-title">Mes projets en ligne</h2>
+            </div>
+
+            <!-- PROJET 1 : EcoRide -->
+            <article class="project-card">
+                <div class="project-image project-image-ecoride">
+                    <div class="project-overlay">
+                        <span class="project-overlay-text">🌱 EcoRide</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">EcoRide</h3>
+                        <span class="project-badge project-badge-live">🟢 EN LIGNE</span>
+                    </div>
+                    <p class="project-tagline">Plateforme de covoiturage écologique</p>
+                    <p class="project-description">
+                        Application full-stack permettant à des chauffeurs et passagers de partager des trajets,
+                        avec un focus sur les véhicules électriques et l'impact carbone réduit.
+                        Système de notation, gestion des crédits, modération des avis.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-pill">PHP</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">MongoDB</span>
+                        <span class="tech-pill">Bootstrap</span>
+                        <span class="tech-pill">MVC</span>
+                    </div>
+                    <ul class="project-features">
+                        <li>13 user stories implémentées</li>
+                        <li>10 tables MySQL + 4 collections MongoDB</li>
+                        <li>33 routes testées en HTTP 200</li>
+                        <li>3 rôles utilisateurs (admin, employé, chauffeur/passager)</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://orofino.alwaysdata.net" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                            🌐 Voir la démo
+                        </a>
+                        <a href="https://github.com/EvanOROFINO/ecoride" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+                            📦 Code source GitHub
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJET 2 : Vite & Gourmand -->
+            <article class="project-card project-card-reverse">
+                <div class="project-image project-image-vg">
+                    <div class="project-overlay">
+                        <span class="project-overlay-text">🍽️ Vite & Gourmand</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Vite &amp; Gourmand</h3>
+                        <span class="project-badge project-badge-soon">⚙️ Déploiement à venir</span>
+                    </div>
+                    <p class="project-tagline">Plateforme de commande pour traiteur</p>
+                    <p class="project-description">
+                        Application web pour un traiteur bordelais : catalogue de plats, commande en ligne,
+                        gestion des employés, panier persistant, système d'envoi d'emails de confirmation.
+                        Architecture Docker, double base de données (MySQL + MongoDB).
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-pill">PHP 8.2</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">MongoDB</span>
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">Apache</span>
+                        <span class="tech-pill">SMTP</span>
+                    </div>
+                    <ul class="project-features">
+                        <li>Architecture MVC avec front controller</li>
+                        <li>Containerisation Docker complète</li>
+                        <li>Système d'authentification multi-rôles</li>
+                        <li>Envoi d'emails transactionnels (SMTP)</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/EvanOROFINO/vitegourmand" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+                            📦 Code source GitHub
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ================== CONTACT ================== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 // Travaillons ensemble</span>
+                <h2 class="section-title">Vous avez un projet ?</h2>
+                <p class="section-subtitle">
+                    Site vitrine, application sur mesure, e-commerce, maintenance…<br>
+                    Je vous réponds sous 24h.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:evanorofino.pro@gmail.com">evanorofino.pro@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h3>Localisation</h3>
+                            <p>Lyon, France — disponible à distance</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <span class="contact-icon">⏱️</span>
+                        <div>
+                            <h3>Disponibilité</h3>
+                            <p>Missions ponctuelles &amp; récurrentes</p>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://github.com/EvanOROFINO" target="_blank" rel="noopener" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        </a>
+                        <a href="https://www.malt.fr" target="_blank" rel="noopener" aria-label="Malt">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nom *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Type de projet</label>
+                        <select id="subject" name="subject">
+                            <option value="site-vitrine">Site vitrine</option>
+                            <option value="application">Application web sur mesure</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="maintenance">Maintenance mensuelle</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Décrivez votre projet *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================== FOOTER ================== -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-copy">
+                &copy; <span id="year">2026</span> Evan Orofino —
+                Développeur Web Full-Stack à Lyon
+            </p>
+            <p class="footer-built">
+                Conçu et développé avec ❤️ et beaucoup de café
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
