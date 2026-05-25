@@ -472,6 +472,10 @@ section {
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
 }
 
+.project-image-studio {
+  background: linear-gradient(135deg, #1a1a1a 0%, #c8a97e 100%);
+}
+
 .project-overlay {
   text-align: center;
   color: white;
@@ -511,6 +515,11 @@ section {
 .project-badge-soon {
   background: #fef3c7;
   color: #b45309;
+}
+
+.project-badge-new {
+  background: #1a1a1a;
+  color: #c8a97e;
 }
 
 .project-tagline {
