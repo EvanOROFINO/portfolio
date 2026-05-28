@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CV — Evan Orofino — Développeur Web Full-Stack Lyon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            font-size: 10pt;
+            line-height: 1.45;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 14mm 16mm;
+            margin: 0 auto;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26pt;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+        }
+        .header .title {
+            font-size: 11pt;
+            color: #555;
+            margin: 4px 0 0;
+            letter-spacing: 0.02em;
+        }
+        .contact {
+            text-align: right;
+            font-size: 9pt;
+            color: #555;
+            line-height: 1.6;
+        }
+        .contact strong { color: #1a1a1a; }
+        .contact a { color: #555; text-decoration: none; }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 12pt;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin: 14px 0 8px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #c8a97e;
+            padding-bottom: 4px;
+        }
+        .summary {
+            font-size: 10.5pt;
+            color: #333;
+            line-height: 1.55;
+            margin: 0 0 8px;
+        }
+        .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
+        .grid-skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 18px; font-size: 9.5pt; }
+        .grid-skills .skill-cat {
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 6px;
+        }
+        .project {
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px dotted #e0e0e0;
+        }
+        .project:last-child { border-bottom: 0; }
+        .project-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .project-head h3 {
+            font-size: 11pt;
+            margin: 0;
+            font-weight: 600;
+        }
+        .project-head h3 .accent {
+            font-size: 9.5pt;
+            color: #c8a97e;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+        .project-head .when {
+            font-size: 9pt;
+            color: #888;
+            white-space: nowrap;
+        }
+        .project p.role {
+            font-size: 9.5pt;
+            color: #555;
+            font-style: italic;
+            margin: 2px 0 4px;
+        }
+        .project ul {
+            margin: 4px 0 4px 0;
+            padding-left: 16px;
+            font-size: 9.5pt;
+            line-height: 1.5;
+        }
+        .project ul li { margin-bottom: 2px; }
+        .project .links {
+            font-size: 8.5pt;
+            color: #888;
+            margin-top: 2px;
+        }
+        .project .links span {
+            color: #c8a97e;
+            font-weight: 600;
+        }
+        .formation-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9.5pt;
+            margin-bottom: 4px;
+        }
+        .formation-item strong { color: #1a1a1a; }
+        .formation-item .school { color: #555; }
+        .formation-item .when { color: #888; white-space: nowrap; }
+        .softskills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .softskills .pill {
+            border: 1px solid #c8a97e;
+            color: #1a1a1a;
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-size: 8.5pt;
+        }
+        .langs { display: flex; gap: 14px; font-size: 9.5pt; }
+        .langs strong { color: #1a1a1a; }
+        @media print {
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div>
+            <h1>Evan Orofino</h1>
+            <p class="title">Développeur Web Full-Stack — Symfony / PHP</p>
+        </div>
+        <div class="contact">
+            <strong>Lyon, France</strong> · 📞 06 XX XX XX XX<br>
+            <a href="mailto:evanorofino.pro@gmail.com">evanorofino.pro@gmail.com</a><br>
+            <a href="https://evanorofino.github.io/portfolio/">evanorofino.github.io/portfolio</a><br>
+            <a href="https://github.com/EvanOROFINO">github.com/EvanOROFINO</a>
+        </div>
+    </header>
+
+    <p class="summary">
+        Développeur web freelance, formé en alternance au <strong>DWWM Studi</strong>. Je conçois et déploie des applications Symfony complètes :
+        site vitrine, e-commerce avec paiement Stripe, back-office sur mesure, conformité RGPD. Code propre, tests automatisés,
+        déploiement clé en main. <strong>Disponible pour des missions ponctuelles ou récurrentes en région lyonnaise.</strong>
+    </p>
+
+    <div class="grid-2">
+        <div>
+            <h2>Réalisations récentes</h2>
+
+            <div class="project">
+                <div class="project-head">
+                    <h3>Studio Photo <span class="accent">— Produit commercial freelance</span></h3>
+                    <span class="when">2026</span>
+                </div>
+                <p class="role">Plateforme métier complète pour photographes professionnels</p>
+                <ul>
+                    <li>20 fonctionnalités : galerie, galerie privée client, réservation Stripe avec acompte, calendrier dispos, blog SEO, boutique tirages, dashboard analytics, multi-langue FR/EN.</li>
+                    <li>Architecture : Symfony 7.4, MySQL, EasyAdmin 5, VichUploader, LiipImagine (WebP), CommonMark, FullCalendar.</li>
+                    <li><strong>49 tests PHPUnit verts + CI GitHub Actions</strong> (lint Twig/YAML/container + tests + audit Composer).</li>
+                    <li>Déploiement Docker prêt (Dockerfile + railway.toml). Hébergement supporté : Railway, Render, OVH, Infomaniak.</li>
+                </ul>
+                <p class="links">→ Démo : <span>evanorofino.github.io/portfolio/studio-photo.html</span> · Code : <span>github.com/EvanOROFINO/studio-photo</span></p>
+            </div>
+
+            <div class="project">
+                <div class="project-head">
+                    <h3>Vite &amp; Gourmand <span class="accent">— ECF Studi (note jury : à venir)</span></h3>
+                    <span class="when">2026</span>
+                </div>
+                <p class="role">Plateforme de commande en ligne pour traiteur bordelais</p>
+                <ul>
+                    <li>Architecture MVC PHP 8.2 avec front controller, containerisation <strong>Docker</strong> complète.</li>
+                    <li>Double base : MySQL (catalogue + commandes) + MongoDB (logs + favoris).</li>
+                    <li>Système d'authentification multi-rôles, panier persistant, envoi d'emails transactionnels SMTP.</li>
+                </ul>
+                <p class="links">→ Démo : <span>vitegourmand-s4in.onrender.com</span> · Code : <span>github.com/EvanOROFINO/vitegourmand</span></p>
+            </div>
+
+            <div class="project">
+                <div class="project-head">
+                    <h3>EcoRide <span class="accent">— TP Final DWWM</span></h3>
+                    <span class="when">2025-2026</span>
+                </div>
+                <p class="role">Plateforme de covoiturage écologique</p>
+                <ul>
+                    <li>13 user stories implémentées, <strong>33 routes testées en HTTP 200</strong>.</li>
+                    <li>10 tables MySQL + 4 collections MongoDB, gestion des crédits utilisateurs et modération des avis.</li>
+                    <li>3 rôles (admin, employé, chauffeur/passager). Déployé sur AlwaysData.</li>
+                </ul>
+                <p class="links">→ Démo : <span>orofino.alwaysdata.net</span> · Code : <span>github.com/EvanOROFINO/ecoride</span></p>
+            </div>
+        </div>
+
+        <div>
+            <h2>Compétences techniques</h2>
+            <div class="grid-skills">
+                <div class="skill-cat">Backend</div><div></div>
+                <div>PHP 8.2 · Symfony 7</div>
+                <div>Doctrine ORM</div>
+                <div>EasyAdmin 5</div>
+                <div>Stripe SDK</div>
+
+                <div class="skill-cat">Frontend</div><div></div>
+                <div>HTML5 / CSS3</div>
+                <div>JavaScript ES6</div>
+                <div>Bootstrap 5 / Twig</div>
+                <div>Chart.js · FullCalendar</div>
+
+                <div class="skill-cat">Base de données</div><div></div>
+                <div>MySQL / MariaDB</div>
+                <div>MongoDB</div>
+                <div>Migrations Doctrine</div>
+                <div>Optimisation requêtes</div>
+
+                <div class="skill-cat">DevOps</div><div></div>
+                <div>Git / GitHub</div>
+                <div>Docker</div>
+                <div>GitHub Actions (CI)</div>
+                <div>Apache / .htaccess</div>
+
+                <div class="skill-cat">Qualité</div><div></div>
+                <div>PHPUnit</div>
+                <div>RGPD / Sécurité OWASP</div>
+                <div>Tests fonctionnels</div>
+                <div>Composer audit</div>
+            </div>
+
+            <h2 style="margin-top: 20px;">Formation</h2>
+            <div class="formation-item">
+                <div>
+                    <strong>Titre Pro DWWM</strong> niveau 5<br>
+                    <span class="school">Studi — Lyon</span>
+                </div>
+                <span class="when">2025-2026</span>
+            </div>
+            <div class="formation-item" style="margin-top: 8px;">
+                <div>
+                    <strong>Bachelor Business Management</strong><br>
+                    <span class="school">Studi — Promo Juin 2028</span>
+                </div>
+                <span class="when">2026-2028</span>
+            </div>
+
+            <h2 style="margin-top: 20px;">Langues</h2>
+            <div class="langs">
+                <span><strong>Français</strong> · natif</span>
+                <span><strong>Anglais</strong> · B2 (technique)</span>
+            </div>
+
+            <h2 style="margin-top: 20px;">Soft skills</h2>
+            <div class="softskills">
+                <span class="pill">Autonome</span>
+                <span class="pill">Curieux</span>
+                <span class="pill">Communicant</span>
+                <span class="pill">Orienté client</span>
+                <span class="pill">Rigoureux</span>
+                <span class="pill">Adaptable</span>
+            </div>
+
+            <h2 style="margin-top: 20px;">Disponibilité</h2>
+            <p style="font-size: 9.5pt; margin: 0; color: #333;">
+                <strong>Statut auto-entrepreneur</strong> actif.<br>
+                Disponible pour missions à Lyon (présentiel) et toute la France (distanciel).<br>
+                TJM indicatif : <strong>400-600 € HT</strong> selon complexité.
+            </p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
