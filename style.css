@@ -476,6 +476,32 @@ section {
   background: linear-gradient(135deg, #1a1a1a 0%, #c8a97e 100%);
 }
 
+.project-image-crm {
+  background:
+    linear-gradient(135deg, rgba(26, 26, 26, 0.96) 0%, rgba(42, 42, 42, 0.96) 100%),
+    repeating-linear-gradient(0deg, transparent 0 18px, rgba(200, 169, 126, 0.08) 18px 19px),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(200, 169, 126, 0.08) 18px 19px);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image-crm::before {
+  content: "▮ ▮▮ ▮ ▮▮▮  ▮▮ ▮  ▮▮  ▮▮▮▮  ▮ ▮▮  ▮▮  ▮▮▮  ▮▮  ▮ ▮  ▮▮ ▮  ▮▮▮ ▮  ▮▮  ▮ ▮ ▮▮  ▮▮  ▮▮▮";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  color: rgba(200, 169, 126, 0.22);
+  font-size: 26px;
+  letter-spacing: 6px;
+  line-height: 1.8;
+  padding: 24px;
+  font-family: monospace;
+  pointer-events: none;
+}
+
 .project-overlay {
   text-align: center;
   color: white;
