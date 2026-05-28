@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CRM — Evan Orofino</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a1a1a' rx='20'/%3E%3Ctext x='50' y='62' font-family='Georgia' font-size='40' font-weight='700' text-anchor='middle' fill='%23c8a97e'%3EE%3C/text%3E%3C/svg%3E">
+<style>
+    :root {
+        --bg: #fafaf7;
+        --bg-card: #ffffff;
+        --bg-col: #f4f1ea;
+        --text: #1a1a1a;
+        --text-muted: #6b6b6b;
+        --gold: #c8a97e;
+        --gold-dark: #a68855;
+        --border: #e5e0d3;
+        --shadow: 0 2px 8px rgba(0,0,0,0.06);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+        --col-contacted: #94a3b8;
+        --col-replied: #3b82f6;
+        --col-meeting: #8b5cf6;
+        --col-quoted: #f59e0b;
+        --col-signed: #10b981;
+        --col-lost: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-size: 14px;
+        line-height: 1.5;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* === Lock screen === */
+    .lock-screen {
+        position: fixed; inset: 0;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9999;
+    }
+    .lock-box {
+        background: #fff;
+        padding: 40px 36px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-lg);
+        text-align: center;
+        max-width: 380px;
+        width: 90%;
+    }
+    .lock-box h1 {
+        font-family: Georgia, serif;
+        font-size: 28px;
+        margin-bottom: 8px;
+        color: var(--text);
+    }
+    .lock-box .gold-bar {
+        width: 50px; height: 3px;
+        background: var(--gold);
+        margin: 0 auto 18px;
+    }
+    .lock-box p { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }
+    .lock-box input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid var(--border);
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 12px;
+        outline: none;
+        transition: border-color 0.15s;
+    }
+    .lock-box input:focus { border-color: var(--gold); }
+    .lock-box button {
+        width: 100%;
+        padding: 12px;
+        background: var(--text);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    .lock-box button:hover { background: var(--gold); }
+    .lock-box .hint {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 14px;
+    }
+    .lock-error {
+        background: #fee2e2;
+        color: #991b1b;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-bottom: 12px;
+        display: none;
+    }
+
+    /* === Layout === */
+    .app { display: flex; flex-direction: column; height: 100vh; }
+    .topbar {
+        background: var(--text);
+        color: #fff;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        border-bottom: 3px solid var(--gold);
+        flex-shrink: 0;
+    }
+    .brand {
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .brand .gold { color: var(--gold); }
+    .topbar .actions {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+    }
+    .btn {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .btn-primary { background: var(--gold); color: var(--text); }
+    .btn-primary:hover { background: #d6b88a; }
+    .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+    .btn-sm { padding: 5px 10px; font-size: 11.5px; }
+    .btn-danger { background: #ef4444; color: #fff; }
+    .btn-danger:hover { background: #dc2626; }
+
+    /* === Stats bar === */
+    .stats-bar {
+        background: #fff;
+        padding: 14px 24px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+    }
+    .stat-card {
+        text-align: center;
+    }
+    .stat-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+    }
+    .stat-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-top: 4px;
+        font-weight: 600;
+    }
+    .stat-card.highlight .stat-value { color: var(--gold-dark); }
+
+    /* === Toolbar === */
+    .toolbar {
+        padding: 12px 24px;
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+    }
+    .search-box {
+        position: relative;
+        flex: 1;
+        max-width: 320px;
+    }
+    .search-box input {
+        width: 100%;
+        padding: 8px 12px 8px 32px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 13px;
+        outline: none;
+        background: #fff;
+    }
+    .search-box input:focus { border-color: var(--gold); }
+    .search-box::before {
+        content: "🔍";
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+    }
+    .filter-chip {
+        padding: 6px 12px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        font-size: 12px;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 500;
+        transition: all 0.15s;
+    }
+    .filter-chip:hover { border-color: var(--gold); }
+    .filter-chip.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+    /* === Board === */
+    .board {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 16px 24px;
+        display: flex;
+        gap: 14px;
+    }
+    .column {
+        flex: 0 0 280px;
+        background: var(--bg-col);
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        transition: background 0.15s;
+    }
+    .column.drag-over { background: #ebe6d6; }
+    .column-header {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .column-dot {
+        width: 10px; height: 10px;
+        border-radius: 50%;
+    }
+    .column[data-status="contacted"] .column-dot { background: var(--col-contacted); }
+    .column[data-status="replied"]   .column-dot { background: var(--col-replied); }
+    .column[data-status="meeting"]   .column-dot { background: var(--col-meeting); }
+    .column[data-status="quoted"]    .column-dot { background: var(--col-quoted); }
+    .column[data-status="signed"]    .column-dot { background: var(--col-signed); }
+    .column[data-status="lost"]      .column-dot { background: var(--col-lost); }
+
+    .column-title { font-weight: 700; font-size: 13px; flex: 1; text-transform: uppercase; letter-spacing: 0.05em; }
+    .column-count {
+        background: rgba(0,0,0,0.06);
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+    .column-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .column-body::-webkit-scrollbar { width: 6px; }
+    .column-body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+    /* === Card === */
+    .card {
+        background: var(--bg-card);
+        border-radius: 5px;
+        padding: 12px 14px;
+        box-shadow: var(--shadow);
+        cursor: grab;
+        border-left: 3px solid var(--gold);
+        transition: transform 0.1s, box-shadow 0.15s;
+        position: relative;
+    }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card.dragging { opacity: 0.4; cursor: grabbing; }
+    .card-name {
+        font-weight: 700;
+        font-size: 13.5px;
+        color: var(--text);
+        margin-bottom: 4px;
+        word-break: break-word;
+    }
+    .card-meta {
+        font-size: 11px;
+        color: var(--text-muted);
+        line-height: 1.5;
+    }
+    .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 6px;
+    }
+    .card-tag {
+        font-size: 10px;
+        padding: 2px 7px;
+        background: #f4f1ea;
+        color: var(--text);
+        border-radius: 10px;
+        font-weight: 600;
+        text-transform: lowercase;
+    }
+    .card-tag.type-mariage { background: #fce7f3; color: #9d174d; }
+    .card-tag.type-corporate { background: #dbeafe; color: #1e40af; }
+    .card-tag.type-portrait { background: #fef3c7; color: #92400e; }
+    .card-tag.type-autre { background: #e0e7ff; color: #3730a3; }
+    .card-followup {
+        margin-top: 8px;
+        font-size: 11px;
+        padding: 4px 8px;
+        background: #fff7e6;
+        color: #92400e;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+    }
+    .card-followup.urgent { background: #fee2e2; color: #991b1b; }
+    .card-followup.done { background: #d1fae5; color: #065f46; }
+    .card-value {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--gold-dark);
+    }
+    .empty-col {
+        text-align: center;
+        padding: 24px 12px;
+        color: var(--text-muted);
+        font-size: 12px;
+        font-style: italic;
+        opacity: 0.6;
+    }
+
+    /* === Modal === */
+    .modal-backdrop {
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        align-items: center; justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+        background: #fff;
+        border-radius: 8px;
+        padding: 24px 28px;
+        max-width: 520px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: var(--shadow-lg);
+    }
+    .modal h2 {
+        font-family: Georgia, serif;
+        font-size: 22px;
+        margin-bottom: 4px;
+    }
+    .modal .modal-sub {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+    }
+    .form-grid .full { grid-column: span 2; }
+    .form-group label {
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 13px;
+        outline: none;
+        font-family: inherit;
+        background: #fff;
+        color: var(--text);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 60px; }
+    .modal-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+        margin-top: 22px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+    }
+    .modal-actions .right { display: flex; gap: 8px; }
+
+    /* === Toast === */
+    .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--text);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 4px;
+        font-size: 13px;
+        box-shadow: var(--shadow-lg);
+        border-left: 3px solid var(--gold);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.25s;
+        z-index: 2000;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-left-color: var(--col-signed); }
+    .toast.error { border-left-color: var(--col-lost); }
+
+    /* Mobile fallback */
+    @media (max-width: 768px) {
+        .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .stat-value { font-size: 18px; }
+        .topbar { padding: 10px 14px; }
+        .toolbar { padding: 10px 14px; flex-wrap: wrap; }
+        .board { padding: 10px 14px; }
+        .column { flex: 0 0 240px; }
+        .form-grid { grid-template-columns: 1fr; }
+        .form-grid .full { grid-column: span 1; }
+    }
+</style>
+</head>
+<body>
+
+<!-- ========= Lock screen ========= -->
+<div class="lock-screen" id="lockScreen">
+    <div class="lock-box">
+        <h1>CRM Evan</h1>
+        <div class="gold-bar"></div>
+        <p>Espace privé — mot de passe requis</p>
+        <div class="lock-error" id="lockError">Mot de passe incorrect</div>
+        <input type="password" id="lockInput" placeholder="Mot de passe" autofocus>
+        <button id="lockBtn">Déverrouiller</button>
+        <div class="hint">💡 1er accès : tape <strong>studio2026</strong>. Tu pourras le changer ensuite via Paramètres.</div>
+    </div>
+</div>
+
+<!-- ========= App ========= -->
+<div class="app" id="app" style="display:none;">
+
+    <div class="topbar">
+        <div class="brand">CRM <span class="gold">Evan</span></div>
+        <div class="actions">
+            <button class="btn btn-primary" id="btnAdd">+ Nouveau prospect</button>
+            <button class="btn btn-ghost btn-sm" id="btnExport">📥 Export</button>
+            <button class="btn btn-ghost btn-sm" id="btnImport">📤 Import</button>
+            <button class="btn btn-ghost btn-sm" id="btnSettings">⚙️</button>
+            <button class="btn btn-ghost btn-sm" id="btnLock">🔒 Verrouiller</button>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-value" id="statTotal">0</div>
+            <div class="stat-label">Prospects total</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statActive">0</div>
+            <div class="stat-label">Pipeline actif</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statResponseRate">0%</div>
+            <div class="stat-label">Taux de réponse</div>
+        </div>
+        <div class="stat-card highlight">
+            <div class="stat-value" id="statConvRate">0%</div>
+            <div class="stat-label">Taux conversion</div>
+        </div>
+        <div class="stat-card highlight">
+            <div class="stat-value" id="statPipeline">0 €</div>
+            <div class="stat-label">CA pipeline</div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Rechercher un prospect...">
+        </div>
+        <div class="filter-chip active" data-filter="all">Tous</div>
+        <div class="filter-chip" data-filter="mariage">Mariage</div>
+        <div class="filter-chip" data-filter="corporate">Corporate</div>
+        <div class="filter-chip" data-filter="portrait">Portrait</div>
+        <div class="filter-chip" data-filter="autre">Autre</div>
+        <div style="margin-left: auto; font-size: 11px; color: var(--text-muted);">
+            💾 Sauvegarde auto · localStorage
+        </div>
+    </div>
+
+    <div class="board" id="board">
+        <!-- Columns rendered by JS -->
+    </div>
+
+</div>
+
+<!-- ========= Modal prospect ========= -->
+<div class="modal-backdrop" id="modalProspect">
+    <div class="modal">
+        <h2 id="modalTitle">Nouveau prospect</h2>
+        <div class="modal-sub" id="modalSub">Saisis les infos clés. Tu peux compléter plus tard.</div>
+
+        <input type="hidden" id="formId">
+        <div class="form-grid">
+            <div class="form-group full">
+                <label>Nom du prospect *</label>
+                <input type="text" id="formName" placeholder="Marie Dupont" required>
+            </div>
+            <div class="form-group">
+                <label>Type d'activité</label>
+                <select id="formType">
+                    <option value="mariage">Mariage</option>
+                    <option value="corporate">Corporate / pro</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Source du contact</label>
+                <select id="formSource">
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="email">Email cold</option>
+                    <option value="recommandation">Recommandation</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+            <div class="form-group full">
+                <label>URL profil / site</label>
+                <input type="url" id="formUrl" placeholder="https://linkedin.com/in/...">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="formEmail" placeholder="marie@studio.fr">
+            </div>
+            <div class="form-group">
+                <label>Téléphone</label>
+                <input type="text" id="formPhone" placeholder="06 XX XX XX XX">
+            </div>
+            <div class="form-group">
+                <label>Statut</label>
+                <select id="formStatus">
+                    <option value="contacted">Contacté</option>
+                    <option value="replied">A répondu</option>
+                    <option value="meeting">RDV booké/fait</option>
+                    <option value="quoted">Devis envoyé</option>
+                    <option value="signed">Signé ✅</option>
+                    <option value="lost">Perdu ❌</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Valeur potentielle (€)</label>
+                <input type="number" id="formValue" placeholder="3000" min="0">
+            </div>
+            <div class="form-group">
+                <label>1er contact</label>
+                <input type="date" id="formContactDate">
+            </div>
+            <div class="form-group">
+                <label>Prochaine relance</label>
+                <input type="date" id="formFollowup">
+            </div>
+            <div class="form-group full">
+                <label>Notes</label>
+                <textarea id="formNotes" placeholder="Réactions, objections, infos contexte..."></textarea>
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn btn-danger btn-sm" id="btnDelete" style="display:none;">🗑 Supprimer</button>
+            <div class="right">
+                <button class="btn btn-ghost btn-sm" id="btnCancel" style="background:#eee; color:var(--text);">Annuler</button>
+                <button class="btn btn-primary" id="btnSave">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========= Modal settings ========= -->
+<div class="modal-backdrop" id="modalSettings">
+    <div class="modal" style="max-width: 420px;">
+        <h2>Paramètres</h2>
+        <div class="modal-sub">Configuration du CRM local</div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+            <label>Changer le mot de passe</label>
+            <input type="password" id="settingsNewPwd" placeholder="Nouveau mot de passe (min 6 car.)">
+        </div>
+
+        <div style="background:#fef3c7;padding:12px 14px;border-radius:4px;font-size:12px;color:#92400e;margin-bottom:14px;line-height:1.6;">
+            ⚠️ <strong>Données locales</strong> : tes prospects sont stockés uniquement dans <strong>ce navigateur</strong>. Si tu changes d'ordi ou supprimes l'historique du navigateur, ils disparaissent.
+            <br><strong>Fais des exports JSON régulièrement</strong> pour les sauvegarder ailleurs.
+        </div>
+
+        <div style="background:#dbeafe;padding:12px 14px;border-radius:4px;font-size:12px;color:#1e40af;margin-bottom:14px;line-height:1.6;">
+            📊 <strong>Stockage utilisé</strong> : <span id="settingsStorage">0 KB</span>
+            <br>Limite localStorage : ~5 MB (largement assez pour 10 000+ prospects)
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn btn-danger btn-sm" id="btnReset">⚠️ Effacer toutes les données</button>
+            <div class="right">
+                <button class="btn btn-ghost btn-sm" id="btnSettingsCancel" style="background:#eee; color:var(--text);">Fermer</button>
+                <button class="btn btn-primary" id="btnSettingsSave">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden file input for import -->
+<input type="file" id="importFile" accept="application/json" style="display:none;">
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   STORAGE & CRYPTO HELPERS
+============================================================ */
+const STORAGE_KEY = 'evan_crm_data';
+const SESSION_KEY = 'evan_crm_unlocked';
+const PWD_KEY = 'evan_crm_pwd_hash';
+const DEFAULT_PWD = 'studio2026';
+
+/* Simple hash (NOT cryptographic — just to avoid plain storage) */
+async function hash(text) {
+    const enc = new TextEncoder().encode(text);
+    const buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function getPwdHash() {
+    let stored = localStorage.getItem(PWD_KEY);
+    if (!stored) {
+        stored = await hash(DEFAULT_PWD);
+        localStorage.setItem(PWD_KEY, stored);
+    }
+    return stored;
+}
+
+async function setPwdHash(newPwd) {
+    const h = await hash(newPwd);
+    localStorage.setItem(PWD_KEY, h);
+}
+
+function loadData() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return { prospects: [], meta: { version: 1, createdAt: new Date().toISOString() } };
+        return JSON.parse(raw);
+    } catch (e) {
+        console.error('loadData error', e);
+        return { prospects: [], meta: { version: 1 } };
+    }
+}
+
+function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function uid() {
+    return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+}
+
+function today() {
+    return new Date().toISOString().slice(0, 10);
+}
+
+/* ============================================================
+   STATE
+============================================================ */
+const COLUMNS = [
+    { key: 'contacted', label: 'Contacté' },
+    { key: 'replied',   label: 'A répondu' },
+    { key: 'meeting',   label: 'RDV' },
+    { key: 'quoted',    label: 'Devis' },
+    { key: 'signed',    label: 'Signé' },
+    { key: 'lost',      label: 'Perdu' }
+];
+let state = loadData();
+let currentFilter = 'all';
+let currentSearch = '';
+
+/* ============================================================
+   LOCK / UNLOCK
+============================================================ */
+const lockScreen = document.getElementById('lockScreen');
+const lockInput = document.getElementById('lockInput');
+const lockBtn = document.getElementById('lockBtn');
+const lockError = document.getElementById('lockError');
+const app = document.getElementById('app');
+
+async function tryUnlock() {
+    const pwd = lockInput.value.trim();
+    if (!pwd) return;
+    const expected = await getPwdHash();
+    const got = await hash(pwd);
+    if (got === expected) {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        lockScreen.style.display = 'none';
+        app.style.display = 'flex';
+        render();
+    } else {
+        lockError.style.display = 'block';
+        lockInput.value = '';
+        lockInput.focus();
+    }
+}
+
+lockBtn.addEventListener('click', tryUnlock);
+lockInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+
+/* Already unlocked in this session? */
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    lockScreen.style.display = 'none';
+    app.style.display = 'flex';
+}
+
+document.getElementById('btnLock').addEventListener('click', () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    location.reload();
+});
+
+/* ============================================================
+   RENDER BOARD
+============================================================ */
+const board = document.getElementById('board');
+
+function filterProspects() {
+    return state.prospects.filter(p => {
+        if (currentFilter !== 'all' && p.type !== currentFilter) return false;
+        if (currentSearch) {
+            const s = currentSearch.toLowerCase();
+            const haystack = (p.name + ' ' + (p.notes||'') + ' ' + (p.email||'') + ' ' + (p.url||'')).toLowerCase();
+            if (!haystack.includes(s)) return false;
+        }
+        return true;
+    });
+}
+
+function daysBetween(d1, d2) {
+    const a = new Date(d1), b = new Date(d2);
+    return Math.round((a - b) / (1000 * 60 * 60 * 24));
+}
+
+function renderCard(p) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.draggable = true;
+    card.dataset.id = p.id;
+
+    let followupHtml = '';
+    if (p.nextFollowup && p.status !== 'signed' && p.status !== 'lost') {
+        const days = daysBetween(p.nextFollowup, today());
+        let cls = '', text = '';
+        if (days < 0) { cls = 'urgent'; text = `⚠️ Relance en retard (${Math.abs(days)}j)`; }
+        else if (days === 0) { cls = 'urgent'; text = `📞 Relancer aujourd'hui`; }
+        else if (days <= 2) { cls = ''; text = `📞 Relance dans ${days}j`; }
+        else { cls = ''; text = `📅 Relance le ${p.nextFollowup}`; }
+        followupHtml = `<div class="card-followup ${cls}">${text}</div>`;
+    }
+
+    const valueHtml = p.value ? `<div class="card-value">${p.value} €</div>` : '';
+
+    card.innerHTML = `
+        ${valueHtml}
+        <div class="card-name">${escapeHtml(p.name)}</div>
+        <div class="card-meta">
+            ${p.source ? `📍 ${escapeHtml(p.source)}` : ''}
+            ${p.email ? `<br>✉️ ${escapeHtml(p.email)}` : ''}
+            ${p.contactDate ? `<br>📅 1er contact : ${p.contactDate}` : ''}
+        </div>
+        <div class="card-tags">
+            ${p.type ? `<span class="card-tag type-${p.type}">${escapeHtml(p.type)}</span>` : ''}
+        </div>
+        ${followupHtml}
+    `;
+
+    card.addEventListener('click', () => openModal(p.id));
+    card.addEventListener('dragstart', e => {
+        card.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', p.id);
+        e.dataTransfer.effectAllowed = 'move';
+    });
+    card.addEventListener('dragend', () => card.classList.remove('dragging'));
+
+    return card;
+}
+
+function render() {
+    board.innerHTML = '';
+    const filtered = filterProspects();
+
+    COLUMNS.forEach(col => {
+        const colEl = document.createElement('div');
+        colEl.className = 'column';
+        colEl.dataset.status = col.key;
+        const list = filtered.filter(p => p.status === col.key);
+        colEl.innerHTML = `
+            <div class="column-header">
+                <span class="column-dot"></span>
+                <span class="column-title">${col.label}</span>
+                <span class="column-count">${list.length}</span>
+            </div>
+            <div class="column-body"></div>
+        `;
+        const body = colEl.querySelector('.column-body');
+        if (list.length === 0) {
+            body.innerHTML = `<div class="empty-col">— vide —</div>`;
+        } else {
+            list.forEach(p => body.appendChild(renderCard(p)));
+        }
+
+        /* Drag-over events */
+        colEl.addEventListener('dragover', e => {
+            e.preventDefault();
+            colEl.classList.add('drag-over');
+        });
+        colEl.addEventListener('dragleave', () => colEl.classList.remove('drag-over'));
+        colEl.addEventListener('drop', e => {
+            e.preventDefault();
+            colEl.classList.remove('drag-over');
+            const id = e.dataTransfer.getData('text/plain');
+            const p = state.prospects.find(x => x.id === id);
+            if (p && p.status !== col.key) {
+                p.status = col.key;
+                p.updatedAt = new Date().toISOString();
+                saveData(state);
+                render();
+                toast(`${p.name} déplacé vers "${col.label}"`, 'success');
+            }
+        });
+
+        board.appendChild(colEl);
+    });
+
+    renderStats();
+}
+
+function renderStats() {
+    const all = state.prospects;
+    const total = all.length;
+    const active = all.filter(p => !['signed','lost'].includes(p.status)).length;
+    const signed = all.filter(p => p.status === 'signed').length;
+    const responded = all.filter(p => !['contacted','lost'].includes(p.status)).length;
+    const contactedTotal = all.filter(p => p.status !== 'lost' || p.replied).length;
+
+    /* Response rate = répondu (réplié, meeting, quoted, signed) / total contacté (tout sauf "perdu sans contact")
+       Simplification : on prend (total - contacted - lost-jamais-réondu) / total */
+    const responseRate = total > 0 ? Math.round((responded / total) * 100) : 0;
+    const convRate = total > 0 ? Math.round((signed / total) * 100) : 0;
+    const pipeline = all
+        .filter(p => p.status !== 'lost' && p.value)
+        .reduce((s, p) => s + (parseInt(p.value, 10) || 0), 0);
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statActive').textContent = active;
+    document.getElementById('statResponseRate').textContent = responseRate + '%';
+    document.getElementById('statConvRate').textContent = convRate + '%';
+    document.getElementById('statPipeline').textContent = pipeline.toLocaleString('fr-FR') + ' €';
+}
+
+/* ============================================================
+   MODAL PROSPECT
+============================================================ */
+const modalProspect = document.getElementById('modalProspect');
+const modalTitle = document.getElementById('modalTitle');
+const modalSub = document.getElementById('modalSub');
+const formFields = ['Id','Name','Type','Source','Url','Email','Phone','Status','Value','ContactDate','Followup','Notes'];
+
+function openModal(id = null) {
+    if (id) {
+        const p = state.prospects.find(x => x.id === id);
+        if (!p) return;
+        document.getElementById('formId').value = p.id;
+        document.getElementById('formName').value = p.name || '';
+        document.getElementById('formType').value = p.type || 'mariage';
+        document.getElementById('formSource').value = p.source || 'linkedin';
+        document.getElementById('formUrl').value = p.url || '';
+        document.getElementById('formEmail').value = p.email || '';
+        document.getElementById('formPhone').value = p.phone || '';
+        document.getElementById('formStatus').value = p.status || 'contacted';
+        document.getElementById('formValue').value = p.value || '';
+        document.getElementById('formContactDate').value = p.contactDate || '';
+        document.getElementById('formFollowup').value = p.nextFollowup || '';
+        document.getElementById('formNotes').value = p.notes || '';
+        modalTitle.textContent = 'Modifier le prospect';
+        modalSub.textContent = `Créé le ${p.createdAt ? p.createdAt.slice(0,10) : '—'} · ID ${p.id}`;
+        document.getElementById('btnDelete').style.display = 'inline-flex';
+    } else {
+        document.getElementById('formId').value = '';
+        document.getElementById('formName').value = '';
+        document.getElementById('formType').value = 'mariage';
+        document.getElementById('formSource').value = 'linkedin';
+        document.getElementById('formUrl').value = '';
+        document.getElementById('formEmail').value = '';
+        document.getElementById('formPhone').value = '';
+        document.getElementById('formStatus').value = 'contacted';
+        document.getElementById('formValue').value = '3000';
+        document.getElementById('formContactDate').value = today();
+        const next = new Date(); next.setDate(next.getDate() + 7);
+        document.getElementById('formFollowup').value = next.toISOString().slice(0,10);
+        document.getElementById('formNotes').value = '';
+        modalTitle.textContent = 'Nouveau prospect';
+        modalSub.textContent = 'Saisis les infos clés. Tu peux compléter plus tard.';
+        document.getElementById('btnDelete').style.display = 'none';
+    }
+    modalProspect.classList.add('show');
+    setTimeout(() => document.getElementById('formName').focus(), 50);
+}
+
+function closeModal() { modalProspect.classList.remove('show'); }
+
+document.getElementById('btnAdd').addEventListener('click', () => openModal());
+document.getElementById('btnCancel').addEventListener('click', closeModal);
+modalProspect.addEventListener('click', e => { if (e.target === modalProspect) closeModal(); });
+
+document.getElementById('btnSave').addEventListener('click', () => {
+    const name = document.getElementById('formName').value.trim();
+    if (!name) { toast('Le nom est obligatoire', 'error'); return; }
+
+    const id = document.getElementById('formId').value;
+    const data = {
+        name: name,
+        type: document.getElementById('formType').value,
+        source: document.getElementById('formSource').value,
+        url: document.getElementById('formUrl').value.trim(),
+        email: document.getElementById('formEmail').value.trim(),
+        phone: document.getElementById('formPhone').value.trim(),
+        status: document.getElementById('formStatus').value,
+        value: parseInt(document.getElementById('formValue').value, 10) || 0,
+        contactDate: document.getElementById('formContactDate').value || today(),
+        nextFollowup: document.getElementById('formFollowup').value || '',
+        notes: document.getElementById('formNotes').value.trim(),
+        updatedAt: new Date().toISOString()
+    };
+
+    if (id) {
+        const idx = state.prospects.findIndex(p => p.id === id);
+        if (idx >= 0) {
+            state.prospects[idx] = Object.assign({}, state.prospects[idx], data);
+        }
+        toast('Prospect mis à jour', 'success');
+    } else {
+        data.id = uid();
+        data.createdAt = new Date().toISOString();
+        state.prospects.unshift(data);
+        toast('Prospect ajouté', 'success');
+    }
+    saveData(state);
+    closeModal();
+    render();
+});
+
+document.getElementById('btnDelete').addEventListener('click', () => {
+    const id = document.getElementById('formId').value;
+    if (!id) return;
+    const p = state.prospects.find(x => x.id === id);
+    if (!p) return;
+    if (!confirm(`Supprimer définitivement "${p.name}" ?`)) return;
+    state.prospects = state.prospects.filter(x => x.id !== id);
+    saveData(state);
+    closeModal();
+    render();
+    toast('Prospect supprimé', 'success');
+});
+
+/* ============================================================
+   SEARCH & FILTERS
+============================================================ */
+document.getElementById('searchInput').addEventListener('input', e => {
+    currentSearch = e.target.value;
+    render();
+});
+
+document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentFilter = chip.dataset.filter;
+        render();
+    });
+});
+
+/* ============================================================
+   EXPORT / IMPORT
+============================================================ */
+document.getElementById('btnExport').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `crm-evan-backup-${today()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast(`Export OK · ${state.prospects.length} prospects`, 'success');
+});
+
+document.getElementById('btnImport').addEventListener('click', () => {
+    document.getElementById('importFile').click();
+});
+
+document.getElementById('importFile').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try {
+            const imported = JSON.parse(ev.target.result);
+            if (!imported.prospects || !Array.isArray(imported.prospects)) {
+                throw new Error('Format invalide');
+            }
+            if (!confirm(`Importer ${imported.prospects.length} prospects ?\n\nATTENTION : Tes ${state.prospects.length} prospects actuels seront REMPLACÉS.\n\nFais un export d'abord si tu veux les garder.`)) {
+                return;
+            }
+            state = imported;
+            saveData(state);
+            render();
+            toast(`Import OK · ${state.prospects.length} prospects`, 'success');
+        } catch (err) {
+            toast('Erreur import : ' + err.message, 'error');
+        }
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // reset
+});
+
+/* ============================================================
+   SETTINGS
+============================================================ */
+const modalSettings = document.getElementById('modalSettings');
+document.getElementById('btnSettings').addEventListener('click', () => {
+    const size = new Blob([JSON.stringify(state)]).size;
+    document.getElementById('settingsStorage').textContent = `${(size/1024).toFixed(1)} KB · ${state.prospects.length} prospects`;
+    document.getElementById('settingsNewPwd').value = '';
+    modalSettings.classList.add('show');
+});
+document.getElementById('btnSettingsCancel').addEventListener('click', () => modalSettings.classList.remove('show'));
+modalSettings.addEventListener('click', e => { if (e.target === modalSettings) modalSettings.classList.remove('show'); });
+
+document.getElementById('btnSettingsSave').addEventListener('click', async () => {
+    const newPwd = document.getElementById('settingsNewPwd').value.trim();
+    if (newPwd) {
+        if (newPwd.length < 6) { toast('Mot de passe min 6 caractères', 'error'); return; }
+        await setPwdHash(newPwd);
+        toast('Mot de passe changé', 'success');
+    }
+    modalSettings.classList.remove('show');
+});
+
+document.getElementById('btnReset').addEventListener('click', () => {
+    if (!confirm('⚠️ Effacer TOUS les prospects ?\n\nCette action est IRRÉVERSIBLE. Fais un export d\'abord si tu veux les garder.')) return;
+    if (!confirm('Confirmation finale : effacer tout ?')) return;
+    state = { prospects: [], meta: { version: 1, createdAt: new Date().toISOString() } };
+    saveData(state);
+    modalSettings.classList.remove('show');
+    render();
+    toast('Toutes les données ont été effacées', 'success');
+});
+
+/* ============================================================
+   HELPERS
+============================================================ */
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, ch => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+    }[ch]));
+}
+
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+function toast(msg, type = '') {
+    toastEl.textContent = msg;
+    toastEl.className = 'toast show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+}
+
+/* Keyboard shortcuts */
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        if (modalProspect.classList.contains('show')) closeModal();
+        if (modalSettings.classList.contains('show')) modalSettings.classList.remove('show');
+    }
+    if (e.key === 'n' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        openModal();
+    }
+});
+
+/* First render */
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    render();
+}
+</script>
+
+</body>
+</html>

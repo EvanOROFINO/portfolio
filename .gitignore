@@ -3,3 +3,18 @@ package-lock.json
 .DS_Store
 *.log
 generate-*.js
+
+# Documents business avec placeholders perso (SIRET, IBAN, etc.) — rester local
+facture-template.html
+bienvenue-client.html
+checklist-contenu.html
+cgv-template.html
+Bienvenue-Studio-Photo.pdf
+Checklist-Contenu.pdf
+Facture-Studio-Photo-TEMPLATE.pdf
+CGV-Evan-Orofino.pdf
+PLAN-PROSPECTION-30-JOURS.md
+ONBOARDING-CLIENT.md
+
+# Backups CRM locaux
+crm-evan-backup-*.json
