@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifs Studio Photo — 3 offres claires sans abonnement | Evan Orofino</title>
+<meta name="description" content="Combien coûte un site métier pour photographe pro ? 3 offres transparentes : Essential 2000 €, Pro 3000 €, Premium 4500 €. Tout inclus, sans abonnement.">
+
+<meta property="og:title" content="Tarifs Studio Photo — Sites métier pour photographes pros">
+<meta property="og:description" content="3 offres claires de 2000 € à 4500 € — tout inclus, sans abonnement multiple. Comparatif vs Pixieset+Squarespace+Calendly inclus.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://evanorofino.github.io/portfolio/tarifs.html">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a1a1a' rx='20'/%3E%3Ctext x='50' y='62' font-family='Georgia' font-size='40' font-weight='700' text-anchor='middle' fill='%23c8a97e'%3EE%3C/text%3E%3C/svg%3E">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --bg: #fafaf7;
+        --bg-card: #ffffff;
+        --text: #1a1a1a;
+        --text-muted: #555;
+        --gold: #c8a97e;
+        --gold-dark: #a68855;
+        --gold-light: #f0eadd;
+        --border: #e5e0d3;
+        --green: #10b981;
+        --red: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* === Top nav === */
+    .topnav {
+        background: var(--text);
+        color: #fff;
+        padding: 16px 24px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 2px solid var(--gold);
+    }
+    .topnav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .topnav .brand {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+    }
+    .topnav .brand .gold { color: var(--gold); }
+    .topnav .nav-links {
+        display: flex;
+        gap: 22px;
+        font-size: 14px;
+    }
+    .topnav .nav-links a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.15s;
+    }
+    .topnav .nav-links a:hover { color: var(--gold); }
+    .topnav .nav-links a.active { color: var(--gold); }
+
+    /* === Hero === */
+    .hero {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        color: #fff;
+        padding: 80px 24px 70px;
+        text-align: center;
+    }
+    .hero .eyebrow {
+        color: var(--gold);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+    .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(36px, 5vw, 54px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 18px;
+        color: #fff;
+        max-width: 820px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero h1 .gold { color: var(--gold); font-style: italic; }
+    .hero .lede {
+        font-size: 18px;
+        color: #ccc;
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    /* === Pricing cards === */
+    .pricing {
+        max-width: 1180px;
+        margin: -40px auto 0;
+        padding: 0 24px 80px;
+    }
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+    .card {
+        background: var(--bg-card);
+        border-radius: 8px;
+        padding: 36px 30px 32px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .card.featured {
+        border: 2px solid var(--gold);
+        box-shadow: 0 12px 40px rgba(200,169,126,0.25);
+        transform: scale(1.03);
+    }
+    .card.featured:hover { transform: scale(1.03) translateY(-6px); }
+    .badge-best {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text);
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 14px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+    .card-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .card-tagline {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 22px;
+        min-height: 36px;
+    }
+    .card-price {
+        font-family: 'Playfair Display', serif;
+        font-size: 50px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+    .card-price .currency { font-size: 28px; vertical-align: super; margin-right: 2px; color: var(--gold-dark); }
+    .card-price-sub {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 22px;
+        line-height: 1.5;
+    }
+    .card-price-sub strong { color: var(--text); }
+    .card.featured .card-price { color: var(--gold-dark); }
+
+    .card-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 28px;
+        flex: 1;
+    }
+    .card-features li {
+        padding: 9px 0 9px 28px;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        font-size: 13.5px;
+        color: var(--text);
+    }
+    .card-features li:last-child { border-bottom: none; }
+    .card-features li.included:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        color: var(--green);
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .card-features li.excluded:before {
+        content: "—";
+        position: absolute;
+        left: 4px;
+        top: 8px;
+        color: #c8c8c8;
+        font-weight: 700;
+    }
+    .card-features li.excluded {
+        color: #999;
+        text-decoration: line-through;
+        text-decoration-color: #ccc;
+    }
+    .card-features li.highlight { background: var(--gold-light); padding-left: 28px; padding-right: 8px; }
+    .card-features li.highlight:before { left: 8px; }
+    .card-features li strong { font-weight: 700; }
+
+    .card-btn {
+        display: block;
+        text-align: center;
+        padding: 14px 18px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        transition: all 0.2s;
+        margin-bottom: 8px;
+    }
+    .card-btn.primary {
+        background: var(--gold);
+        color: var(--text);
+    }
+    .card-btn.primary:hover { background: #d6b88a; }
+    .card-btn.dark {
+        background: var(--text);
+        color: #fff;
+    }
+    .card-btn.dark:hover { background: var(--gold); color: var(--text); }
+    .card-btn.outline {
+        background: transparent;
+        color: var(--text);
+        border: 1.5px solid var(--text);
+    }
+    .card-btn.outline:hover { background: var(--text); color: var(--gold); }
+    .card-payment-note {
+        text-align: center;
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 8px;
+    }
+
+    /* === Section title === */
+    .section {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 70px 24px;
+    }
+    .section-eyebrow {
+        text-align: center;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--gold-dark);
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(28px, 4vw, 42px);
+        text-align: center;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 14px;
+        color: var(--text);
+    }
+    .section-title .gold { color: var(--gold); font-style: italic; }
+    .section-sub {
+        text-align: center;
+        font-size: 17px;
+        color: var(--text-muted);
+        max-width: 700px;
+        margin: 0 auto 50px;
+        line-height: 1.6;
+    }
+
+    /* === Comparison table === */
+    .comparison {
+        background: #fff;
+        padding: 70px 24px;
+    }
+    .comparison-table-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        overflow-x: auto;
+    }
+    table.comparison-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        min-width: 720px;
+    }
+    table.comparison-table th,
+    table.comparison-table td {
+        padding: 14px 16px;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+    }
+    table.comparison-table thead th {
+        background: var(--text);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 16px 14px;
+    }
+    table.comparison-table thead th:first-child { border-radius: 6px 0 0 0; text-align: left; padding-left: 22px; }
+    table.comparison-table thead th:last-child { border-radius: 0 6px 0 0; }
+    table.comparison-table thead th.our {
+        background: var(--gold);
+        color: var(--text);
+        position: relative;
+    }
+    table.comparison-table thead th.our:before {
+        content: "RECOMMANDÉ";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text);
+        color: var(--gold);
+        font-size: 9px;
+        padding: 3px 10px;
+        border-radius: 10px;
+        letter-spacing: 0.1em;
+    }
+    table.comparison-table tbody tr:hover { background: #fafaf7; }
+    table.comparison-table td:first-child {
+        text-align: left;
+        font-weight: 600;
+        color: var(--text);
+        padding-left: 22px;
+    }
+    table.comparison-table td.our {
+        background: rgba(200,169,126,0.08);
+        font-weight: 600;
+    }
+    table.comparison-table .check { color: var(--green); font-size: 18px; font-weight: 700; }
+    table.comparison-table .cross { color: var(--red); font-size: 18px; font-weight: 700; }
+    table.comparison-table .partial { color: var(--gold-dark); font-size: 14px; font-weight: 600; }
+    table.comparison-table tfoot td {
+        background: var(--gold-light);
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--text);
+        border-bottom: none;
+        padding: 18px 14px;
+    }
+    table.comparison-table tfoot td:first-child { border-radius: 0 0 0 6px; }
+    table.comparison-table tfoot td:last-child { border-radius: 0 0 6px 0; }
+    table.comparison-table tfoot td.our {
+        background: var(--gold);
+        color: var(--text);
+    }
+    .comparison-note {
+        max-width: 1100px;
+        margin: 24px auto 0;
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    /* === Payment section === */
+    .payment-section {
+        background: linear-gradient(135deg, var(--gold-light) 0%, #faf6ee 100%);
+    }
+    .payment-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .payment-card {
+        background: #fff;
+        padding: 28px 26px;
+        border-radius: 6px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .payment-card .icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+    .payment-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    .payment-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .payment-card strong { color: var(--text); }
+
+    /* === FAQ === */
+    .faq {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .faq-item {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin-bottom: 12px;
+        overflow: hidden;
+    }
+    .faq-question {
+        padding: 18px 22px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 15.5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        transition: background 0.15s;
+    }
+    .faq-question:hover { background: #faf8f3; }
+    .faq-question .icon {
+        font-size: 20px;
+        color: var(--gold-dark);
+        transition: transform 0.2s;
+        flex-shrink: 0;
+        margin-left: 14px;
+    }
+    .faq-item.open .faq-question .icon { transform: rotate(45deg); }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease-out;
+    }
+    .faq-answer-inner {
+        padding: 0 22px 20px;
+        font-size: 14.5px;
+        color: var(--text-muted);
+        line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    /* === Final CTA === */
+    .final-cta {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        color: #fff;
+        padding: 70px 24px;
+        text-align: center;
+    }
+    .final-cta h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(28px, 4vw, 40px);
+        margin-bottom: 14px;
+        color: #fff;
+    }
+    .final-cta h2 .gold { color: var(--gold); font-style: italic; }
+    .final-cta p {
+        color: #ccc;
+        font-size: 17px;
+        max-width: 600px;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+    }
+    .final-cta .btn-row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .btn-cta {
+        display: inline-block;
+        padding: 15px 32px;
+        background: var(--gold);
+        color: var(--text);
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        transition: all 0.2s;
+    }
+    .btn-cta:hover { background: #d6b88a; transform: translateY(-2px); }
+    .btn-ghost {
+        display: inline-block;
+        padding: 15px 28px;
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    .btn-ghost:hover { color: #fff; border-color: var(--gold); }
+
+    /* === Footer === */
+    .footer {
+        background: #000;
+        color: #888;
+        padding: 30px 24px;
+        text-align: center;
+        font-size: 13px;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    /* === Responsive === */
+    @media (max-width: 940px) {
+        .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: -40px auto 0; }
+        .card.featured { transform: scale(1); }
+        .card.featured:hover { transform: translateY(-6px); }
+        .payment-grid { grid-template-columns: 1fr; }
+        .topnav .nav-links { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="topnav-inner">
+        <a href="index.html" class="brand">Evan <span class="gold">Orofino</span></a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="studio-photo.html">Studio Photo</a>
+            <a href="tarifs.html" class="active">Tarifs</a>
+            <a href="blog-wordpress-photographes.html">Blog</a>
+            <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener">Réserver un appel</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+    <div class="eyebrow">Tarifs Studio Photo</div>
+    <h1>Un prix clair. <span class="gold">Pas d'abonnement.</span><br>Pas de mauvaises surprises.</h1>
+    <p class="lede">3 offres transparentes pour photographes professionnels. Vous payez une fois, votre site vous appartient. Sans plugins à mettre à jour, sans abonnement à 5 outils différents.</p>
+</header>
+
+<!-- ============ PRICING CARDS ============ -->
+<section class="pricing">
+    <div class="pricing-grid">
+
+        <!-- === Essential === -->
+        <div class="card">
+            <div class="card-name">Essential</div>
+            <div class="card-tagline">Pour démarrer en ligne sans se ruiner</div>
+            <div class="card-price"><span class="currency">€</span>2 000</div>
+            <div class="card-price-sub">TVA non applicable (art. 293 B CGI) · <strong>ou 2× 1 000 €</strong></div>
+
+            <ul class="card-features">
+                <li class="included">Site vitrine <strong>5 pages</strong></li>
+                <li class="included">Galerie photo principale (jusqu'à 60 visuels)</li>
+                <li class="included">Formulaire de contact + anti-spam</li>
+                <li class="included">100% responsive (mobile/tablette)</li>
+                <li class="included">Mode sombre + multi-langue FR</li>
+                <li class="included">SEO de base + sitemap</li>
+                <li class="included">RGPD complet (bandeau cookies, mentions)</li>
+                <li class="included">Hébergement <strong>1 an offert</strong></li>
+                <li class="excluded">Galerie privée client</li>
+                <li class="excluded">Boutique de tirages</li>
+                <li class="excluded">Agenda de réservation</li>
+                <li class="excluded">Blog SEO</li>
+            </ul>
+
+            <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener" class="card-btn outline">Échanger sur ce projet</a>
+            <p class="card-payment-note">Livraison en 15 jours · Garantie 30 jours</p>
+        </div>
+
+        <!-- === Pro (featured) === -->
+        <div class="card featured">
+            <div class="badge-best">⭐ Le best-seller</div>
+            <div class="card-name">Pro</div>
+            <div class="card-tagline">La plateforme métier complète</div>
+            <div class="card-price"><span class="currency">€</span>3 000</div>
+            <div class="card-price-sub"><strong>ou 3× 1 000 €</strong> · sans frais · sans abonnement</div>
+
+            <ul class="card-features">
+                <li class="included"><strong>Tout Essential</strong> +</li>
+                <li class="included highlight"><strong>Galerie privée client</strong> illimitée (mot de passe + ZIP)</li>
+                <li class="included highlight"><strong>Boutique tirages</strong> avec paiement Stripe</li>
+                <li class="included highlight"><strong>Agenda réservation</strong> avec acompte automatique</li>
+                <li class="included">Blog SEO (commonmark + sitemap RSS)</li>
+                <li class="included">Multi-langue <strong>FR + EN</strong></li>
+                <li class="included">Dashboard admin (stats CA, KPIs)</li>
+                <li class="included">Hébergement <strong>1 an offert</strong></li>
+                <li class="included"><strong>Formation 1h en visio</strong></li>
+                <li class="included">Garantie <strong>30 jours</strong> + support email</li>
+                <li class="included">Code source à vous (livré sur GitHub)</li>
+                <li class="included">Devis + facture + CGV signés</li>
+            </ul>
+
+            <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener" class="card-btn primary">🎯 Réserver un appel</a>
+            <p class="card-payment-note">Livraison en 4 semaines · 30 jours de garantie</p>
+        </div>
+
+        <!-- === Premium === -->
+        <div class="card">
+            <div class="card-name">Premium</div>
+            <div class="card-tagline">Design 100% sur mesure + maintenance offerte</div>
+            <div class="card-price"><span class="currency">€</span>4 500</div>
+            <div class="card-price-sub"><strong>ou 3× 1 500 €</strong> · 3 mois de maintenance inclus</div>
+
+            <ul class="card-features">
+                <li class="included"><strong>Tout Pro</strong> +</li>
+                <li class="included highlight">Design <strong>100% sur mesure</strong> (3 itérations)</li>
+                <li class="included highlight">Migration depuis ancien site (WP, Wix…)</li>
+                <li class="included highlight"><strong>5 articles de blog rédigés</strong> pour démarrer</li>
+                <li class="included">Optimisation SEO avancée (audit + recommandations)</li>
+                <li class="included">Setup Google Analytics + Search Console</li>
+                <li class="included">Configuration emails transactionnels (Brevo)</li>
+                <li class="included"><strong>3 mois de maintenance offerts</strong> (150 € de valeur)</li>
+                <li class="included">Formation <strong>2h</strong> + tutoriel vidéo personnalisé</li>
+                <li class="included">Support prioritaire WhatsApp 6 mois</li>
+                <li class="included">Priorité sur évolutions futures</li>
+            </ul>
+
+            <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener" class="card-btn dark">Discuter d'un projet sur mesure</a>
+            <p class="card-payment-note">Livraison en 6 semaines · 3 mois inclus</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="comparison">
+    <div class="section-eyebrow">Comparatif honnête</div>
+    <h2 class="section-title">Studio Photo vs <span class="gold">le patchwork SaaS</span></h2>
+    <p class="section-sub">Ce que 80% des photographes assemblent aujourd'hui pour avoir les mêmes fonctionnalités — et ce que ça coûte vraiment sur 3 ans.</p>
+
+    <div class="comparison-table-wrap">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Fonctionnalité</th>
+                    <th>Studio Photo<br><span style="font-size:10px; opacity:0.7;">— l'offre Pro 3000 €</span></th>
+                    <th class="our">Patchwork SaaS<br><span style="font-size:10px; opacity:0.7;">WP + Pixieset + Calendly + Stripe</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Site vitrine moderne</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Inclus</div></td>
+                    <td class="our"><span class="partial">~</span><div style="font-size:11px;color:#888;">Thème WP 89 €/an</div></td>
+                </tr>
+                <tr>
+                    <td>Galerie privée client (mariage, portrait, corpo)</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Illimité, inclus</div></td>
+                    <td class="our"><span class="check">✓</span><div style="font-size:11px;color:#888;">Pixieset 40 €/mois</div></td>
+                </tr>
+                <tr>
+                    <td>Boutique tirages avec paiement Stripe</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Inclus</div></td>
+                    <td class="our"><span class="partial">~</span><div style="font-size:11px;color:#888;">WooCommerce + extensions</div></td>
+                </tr>
+                <tr>
+                    <td>Agenda réservation avec acompte</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Natif</div></td>
+                    <td class="our"><span class="partial">~</span><div style="font-size:11px;color:#888;">Calendly 15 €/mois + plugin WP</div></td>
+                </tr>
+                <tr>
+                    <td>Blog SEO avec catégories</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Inclus</div></td>
+                    <td class="our"><span class="check">✓</span><div style="font-size:11px;color:#888;">Natif WP</div></td>
+                </tr>
+                <tr>
+                    <td>Multi-langue FR + EN</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Inclus</div></td>
+                    <td class="our"><span class="cross">✗</span><div style="font-size:11px;color:#888;">WPML 99 €/an</div></td>
+                </tr>
+                <tr>
+                    <td>Performance (score Lighthouse)</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">90+ assuré</div></td>
+                    <td class="our"><span class="cross">✗</span><div style="font-size:11px;color:#888;">50-70 typique</div></td>
+                </tr>
+                <tr>
+                    <td>Mises à jour / plugins à gérer</td>
+                    <td><span class="check">0</span><div style="font-size:11px;color:#888;">Aucune</div></td>
+                    <td class="our"><span class="cross">17-24</span><div style="font-size:11px;color:#888;">Chaque mois</div></td>
+                </tr>
+                <tr>
+                    <td>Risque de piratage / failles</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Très faible</div></td>
+                    <td class="our"><span class="cross">⚠</span><div style="font-size:11px;color:#888;">1 photographe/8 par an</div></td>
+                </tr>
+                <tr>
+                    <td>Vous êtes propriétaire du code</td>
+                    <td><span class="check">✓</span><div style="font-size:11px;color:#888;">Oui, livré GitHub</div></td>
+                    <td class="our"><span class="cross">✗</span><div style="font-size:11px;color:#888;">Dépendance à 5 SaaS</div></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>💰 Coût total sur 3 ans</td>
+                    <td><strong>4 800 €</strong><div style="font-size:11px;color:#888;font-weight:400;">3 000 € + 50 €/mois optionnel</div></td>
+                    <td class="our"><strong>3 987 €</strong><div style="font-size:11px;color:#444;font-weight:400;">1 329 €/an × 3 (cumul WP+SaaS)</div></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <p class="comparison-note">
+        💡 L'écart financier est faible (~800 € sur 3 ans). <strong>L'écart qualitatif est énorme :</strong> vous arrêtez de bricoler, votre site travaille pour vous, et vous êtes propriétaire à 100% du code livré.
+    </p>
+</section>
+
+<!-- ============ PAYMENT MODES ============ -->
+<section class="section payment-section">
+    <div class="section-eyebrow">Modalités de paiement</div>
+    <h2 class="section-title">3 façons de <span class="gold">commencer</span></h2>
+    <p class="section-sub">Choisissez ce qui vous arrange. Aucun supplément. Tout est dans le devis.</p>
+
+    <div class="payment-grid">
+        <div class="payment-card">
+            <div class="icon">💳</div>
+            <h3>Paiement comptant</h3>
+            <p>Vous réglez l'intégralité à la signature. <strong>Pas de frais.</strong> Livraison de 15 jours à 6 semaines selon l'offre.</p>
+        </div>
+        <div class="payment-card">
+            <div class="icon">🤝</div>
+            <h3>En 3 fois sans frais</h3>
+            <p><strong>30%</strong> à la signature · <strong>40%</strong> à la validation maquette · <strong>30%</strong> à la mise en ligne. Aucun supplément.</p>
+        </div>
+        <div class="payment-card">
+            <div class="icon">📅</div>
+            <h3>Échelonné personnalisé</h3>
+            <p>Vous avez un budget mensuel limité ? On cale ensemble un échéancier sur 4 ou 6 mois. <strong>Sans intérêts.</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section">
+    <div class="section-eyebrow">Vos questions</div>
+    <h2 class="section-title">Les <span class="gold">questions</span> qu'on me pose</h2>
+    <p class="section-sub">Si vous ne trouvez pas votre réponse, écrivez-moi : evanorofino.pro@gmail.com</p>
+
+    <div class="faq">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Pourquoi pas un thème WordPress à 89 € ?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="answer-inner faq-answer-inner">
+                    Vous pouvez. Sur 3 ans, en cumulant l'hébergement, le thème, les plugins payants (Pixieset, Calendly, WPML, plugins SEO…), la maintenance freelance et les éventuelles réparations après piratage, vous arriverez à environ 4 000 € — pour un site dont vous n'êtes jamais propriétaire à 100% et que vous n'osez pas modifier seul. Avec Studio Photo, vous payez 3 000 € en one-shot pour <strong>un site sur mesure, propriétaire du code, sans abonnements à 5 outils différents</strong>. <a href="blog-wordpress-photographes.html" style="color:var(--gold-dark); font-weight:600;">Article complet ici</a>.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Combien de temps pour la livraison ?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    <strong>Essential : 15 jours.</strong> <strong>Pro : 4 semaines.</strong> <strong>Premium : 6 semaines.</strong> Le planning est calé dès la signature : kick-off à J+1, maquette à J+10, pré-production à J+21, mise en ligne à J+28-42 selon l'offre. Les délais sont contractualisés dans les CGV.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Que se passe-t-il si je veux des fonctionnalités hors devis ?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Si la demande prend <strong>moins d'1h de travail</strong>, c'est offert. Au-delà, je vous fais un <strong>mini-devis avenant</strong> (TJM 60 €/h) que vous signez avant exécution. Pas de "mauvaises surprises" en fin de mission, c'est dans les CGV.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Qu'est-ce qui se passe après la livraison ?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Vous avez <strong>30 jours de garantie</strong> incluse : tout bug ou anomalie sur ce qui est dans le devis = correction gratuite. Au-delà, je propose un <strong>contrat de maintenance optionnel à 50 €/mois</strong> (sans engagement) qui inclut : mises à jour sécurité, sauvegardes automatiques, monitoring uptime, support email sous 24h ouvrées. Sinon, vous gérez seul.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Et si je veux migrer mon site dans 2 ans ?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Vous le pouvez sans aucune restriction. <strong>Le code source vous appartient</strong> (livré sur votre compte GitHub à la mise en ligne). Vous pouvez le faire reprendre par n'importe quel développeur compétent en Symfony/PHP. C'est l'inverse exact d'un SaaS où vous êtes dépendant à vie.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Vous facturez en TTC ou HT ?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Je suis auto-entrepreneur en franchise de TVA (art. 293 B du CGI). Les prix affichés sont donc les prix <strong>réellement payés</strong>, sans TVA à ajouter. Si vous êtes une entreprise assujettie à la TVA, vous ne pourrez pas récupérer de TVA sur cette prestation.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Vous travaillez avec qui ? (références)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">
+                    Studio Photo est ma plateforme phare, dont vous pouvez voir <a href="studio-photo.html" style="color:var(--gold-dark);font-weight:600;">la démo complète ici</a> et <a href="https://github.com/EvanOROFINO/studio-photo" target="_blank" rel="noopener" style="color:var(--gold-dark);font-weight:600;">le code source GitHub ici</a>. Je suis disponible en visio pour vous présenter la solution en live et répondre à toutes vos questions techniques. <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener" style="color:var(--gold-dark);font-weight:600;">Réserver 20 min sur Calendly</a>.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+    <h2>Prêt à <span class="gold">discuter</span> de votre projet ?</h2>
+    <p>Échangeons 20 minutes en visio. Sans engagement, sans pression. On regarde votre situation actuelle, on identifie ce qui peut être amélioré, et je vous dis honnêtement si Studio Photo est la bonne solution pour vous.</p>
+    <div class="btn-row">
+        <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener" class="btn-cta">🎯 Réserver un appel</a>
+        <a href="studio-photo.html" class="btn-ghost">Voir la démo Studio Photo</a>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2026 Evan Orofino · Dev Symfony freelance Lyon · <a href="index.html">Portfolio</a> · <a href="studio-photo.html">Studio Photo</a> · <a href="blog-wordpress-photographes.html">Blog</a> · <a href="mailto:evanorofino.pro@gmail.com">Contact</a></p>
+</footer>
+
+<script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.closest('.faq-item');
+            const wasOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            // Open clicked (if was closed)
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+</script>
+
+</body>
+</html>
