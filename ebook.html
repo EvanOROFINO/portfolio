@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Guide du Site Métier pour Photographe Pro — Ebook gratuit</title>
+<meta name="description" content="Téléchargez gratuitement le guide PDF de 8 pages pour photographes pros : 5 fonctions vitales, piège des SaaS, prix juste, 7 questions à poser à votre dev, planning idéal en 4 semaines.">
+
+<meta property="og:title" content="Ebook gratuit : Le Guide du Site Métier pour Photographe Pro">
+<meta property="og:description" content="8 pages, 6 chapitres, 15 min de lecture. Tout ce que les photographes pros doivent savoir avant de lancer leur site web.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://evanorofino.github.io/portfolio/ebook.html">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a1a1a' rx='20'/%3E%3Ctext x='50' y='62' font-family='Georgia' font-size='40' font-weight='700' text-anchor='middle' fill='%23c8a97e'%3EE%3C/text%3E%3C/svg%3E">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --bg: #fafaf7;
+        --text: #1a1a1a;
+        --text-muted: #555;
+        --gold: #c8a97e;
+        --gold-dark: #a68855;
+        --gold-light: #f0eadd;
+        --border: #e5e0d3;
+        --green: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* === Top nav === */
+    .topnav {
+        background: var(--text);
+        color: #fff;
+        padding: 14px 24px;
+        border-bottom: 2px solid var(--gold);
+    }
+    .topnav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .topnav .brand {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+    }
+    .topnav .brand .gold { color: var(--gold); }
+    .topnav .nav-links {
+        display: flex;
+        gap: 22px;
+        font-size: 14px;
+    }
+    .topnav .nav-links a {
+        color: #ddd;
+        text-decoration: none;
+    }
+    .topnav .nav-links a:hover { color: var(--gold); }
+
+    /* === Hero === */
+    .hero {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        color: #fff;
+        padding: 60px 24px 70px;
+    }
+    .hero-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 50px;
+        align-items: center;
+    }
+    .hero-left .eyebrow {
+        color: var(--gold);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+    .hero-left h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(32px, 4.5vw, 46px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 18px;
+        color: #fff;
+    }
+    .hero-left h1 .gold { color: var(--gold); font-style: italic; }
+    .hero-left .lede {
+        font-size: 17px;
+        color: #ccc;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+    .hero-left .meta-stats {
+        display: flex;
+        gap: 18px;
+        font-size: 13px;
+        color: #999;
+        margin-bottom: 20px;
+    }
+    .hero-left .meta-stats span:before { content: "✓ "; color: var(--gold); margin-right: 4px; font-weight: 700; }
+
+    .ebook-mockup {
+        position: relative;
+        text-align: center;
+    }
+    .ebook-cover {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        border: 2px solid var(--gold);
+        padding: 28px 26px;
+        border-radius: 4px 12px 12px 4px;
+        box-shadow: -8px 18px 40px rgba(0,0,0,0.5), inset 6px 0 0 rgba(200,169,126,0.15);
+        max-width: 320px;
+        margin: 0 auto;
+        transform: rotate(-2deg) perspective(800px) rotateY(-8deg);
+        transition: transform 0.4s;
+    }
+    .ebook-cover:hover { transform: rotate(-2deg) perspective(800px) rotateY(0deg); }
+    .ebook-cover .badge {
+        color: var(--gold);
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+    .ebook-cover .gold-line { width: 30px; height: 2px; background: var(--gold); margin: 0 auto 12px; }
+    .ebook-cover .title {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+    .ebook-cover .title .gold { color: var(--gold); font-style: italic; font-weight: 400; }
+    .ebook-cover .subtitle {
+        font-family: Georgia, serif;
+        font-size: 12px;
+        color: #aaa;
+        font-style: italic;
+        line-height: 1.4;
+        margin-bottom: 18px;
+    }
+    .ebook-cover .meta {
+        font-size: 10px;
+        color: #888;
+        margin-bottom: 18px;
+        padding: 8px;
+        background: rgba(200,169,126,0.08);
+        border: 1px solid rgba(200,169,126,0.3);
+        border-radius: 2px;
+    }
+    .ebook-cover .author {
+        font-size: 10px;
+        color: #fff;
+        margin-top: 22px;
+    }
+    .ebook-cover .author strong { color: var(--gold); font-size: 12px; display: block; }
+
+    /* === Form section === */
+    .form-section {
+        background: #fff;
+        padding: 60px 24px;
+        border-bottom: 1px solid var(--border);
+    }
+    .form-wrap {
+        max-width: 560px;
+        margin: 0 auto;
+        background: #faf8f3;
+        border: 2px solid var(--gold);
+        padding: 36px 32px;
+        border-radius: 6px;
+        box-shadow: 0 8px 30px rgba(200,169,126,0.15);
+        text-align: center;
+    }
+    .form-wrap h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        margin-bottom: 8px;
+    }
+    .form-wrap h2 .gold { color: var(--gold-dark); font-style: italic; }
+    .form-wrap p {
+        color: var(--text-muted);
+        font-size: 14.5px;
+        margin-bottom: 22px;
+        line-height: 1.5;
+    }
+    .form-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    .form-row input[type="email"] {
+        flex: 1;
+        padding: 14px 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 4px;
+        font-size: 15px;
+        outline: none;
+        background: #fff;
+        font-family: inherit;
+    }
+    .form-row input[type="email"]:focus { border-color: var(--gold); }
+    .form-row button {
+        padding: 14px 24px;
+        background: var(--text);
+        color: var(--gold);
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    .form-row button:hover { background: var(--gold); color: var(--text); }
+    .form-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--text-muted);
+        text-align: left;
+        margin-top: 8px;
+    }
+    .form-checkbox input { margin-top: 3px; flex-shrink: 0; }
+    .form-disclaimer {
+        font-size: 11px;
+        color: #999;
+        margin-top: 14px;
+        line-height: 1.5;
+    }
+    .form-disclaimer a { color: var(--gold-dark); text-decoration: none; }
+    .alt-download {
+        margin-top: 14px;
+        font-size: 13px;
+    }
+    .alt-download a {
+        color: var(--gold-dark);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        font-weight: 600;
+    }
+    .success-msg {
+        display: none;
+        background: #d1fae5;
+        color: #065f46;
+        padding: 16px 20px;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 16px;
+        text-align: left;
+        line-height: 1.5;
+    }
+    .success-msg.show { display: block; }
+    .success-msg strong { display: block; font-size: 16px; margin-bottom: 4px; color: #064e3b; }
+
+    /* === Content preview === */
+    .preview {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 70px 24px;
+    }
+    .preview h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(28px, 4vw, 38px);
+        text-align: center;
+        margin-bottom: 14px;
+    }
+    .preview h2 .gold { color: var(--gold); font-style: italic; }
+    .preview-sub {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 17px;
+        max-width: 640px;
+        margin: 0 auto 45px;
+    }
+    .chapters {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    .chapter {
+        background: #fff;
+        border-radius: 6px;
+        padding: 22px 24px;
+        border-left: 4px solid var(--gold);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .chapter:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    .chapter .num {
+        font-family: 'Playfair Display', serif;
+        font-size: 28px;
+        color: var(--gold);
+        font-style: italic;
+        font-weight: 400;
+    }
+    .chapter h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 19px;
+        margin: 6px 0 6px;
+        line-height: 1.2;
+    }
+    .chapter p {
+        font-size: 13.5px;
+        color: var(--text-muted);
+        line-height: 1.55;
+    }
+
+    /* === Author === */
+    .author-section {
+        background: #faf8f3;
+        padding: 60px 24px;
+    }
+    .author-wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 36px 32px;
+        border-radius: 6px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .author-avatar {
+        width: 100px; height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1a1a1a 0%, var(--gold) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 44px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+    }
+    .author-info h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+    .author-info .role {
+        font-size: 13px;
+        color: var(--gold-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    .author-info p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+    .author-info .links { margin-top: 10px; font-size: 13px; }
+    .author-info .links a {
+        color: var(--gold-dark);
+        text-decoration: none;
+        margin-right: 16px;
+        font-weight: 600;
+    }
+
+    /* === Footer === */
+    .footer {
+        background: var(--text);
+        color: #888;
+        padding: 28px 24px;
+        text-align: center;
+        font-size: 13px;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 820px) {
+        .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+        .ebook-cover { transform: rotate(0deg); }
+        .chapters { grid-template-columns: 1fr; }
+        .form-row { flex-direction: column; }
+        .author-wrap { flex-direction: column; text-align: center; }
+        .topnav .nav-links { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="topnav-inner">
+        <a href="index.html" class="brand">Evan <span class="gold">Orofino</span></a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="studio-photo.html">Studio Photo</a>
+            <a href="tarifs.html">Tarifs</a>
+            <a href="blog-wordpress-photographes.html">Blog</a>
+            <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener">Réserver un appel</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-grid">
+        <div class="hero-left">
+            <div class="eyebrow">📚 Ebook gratuit · 2026</div>
+            <h1>Le guide du <span class="gold">site métier</span><br>pour photographe pro</h1>
+            <p class="lede">8 pages, 6 chapitres, 15 minutes de lecture. Tout ce que vous devez savoir avant de lancer ou refondre votre site — sans bullshit, sans pression commerciale.</p>
+            <div class="meta-stats">
+                <span>8 pages denses</span>
+                <span>6 chapitres</span>
+                <span>100% gratuit</span>
+            </div>
+        </div>
+        <div class="ebook-mockup">
+            <div class="ebook-cover">
+                <div class="badge">Guide pratique · 2026</div>
+                <div class="gold-line"></div>
+                <div class="title">Le Guide du<br><span class="gold">Site Métier</span><br>pour Photographe Pro</div>
+                <div class="subtitle">Comment arrêter de bricoler avec WordPress, Pixieset et Calendly</div>
+                <div class="meta">📖 8 pages · 6 chapitres · 15 min</div>
+                <div class="author">
+                    <strong>Evan Orofino</strong>
+                    Dev Symfony freelance · Lyon
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="form-section">
+    <div class="form-wrap">
+        <div class="success-msg" id="successMsg">
+            <strong>✓ Merci ! Téléchargement disponible ci-dessous.</strong>
+            J'ai aussi noté votre email pour vous envoyer la prochaine édition (1 fois par trimestre max, désinscription à tout moment).
+            <div style="margin-top:12px;">
+                <a href="Guide-Site-Metier-Photographe-Pro.pdf" download style="display:inline-block; background:#1a1a1a; color:#c8a97e; padding:12px 24px; border-radius:4px; text-decoration:none; font-weight:700;">📥 Télécharger le PDF (515 KB)</a>
+            </div>
+        </div>
+
+        <h2 id="formTitle">Recevez le guide en <span class="gold">PDF</span></h2>
+        <p id="formIntro">Renseignez votre email — vous recevez le lien de téléchargement immédiatement. Aucun spam, je promets.</p>
+
+        <form id="ebookForm" action="https://formsubmit.co/evanorofino.pro@gmail.com" method="POST">
+            <!-- Formsubmit.co config -->
+            <input type="hidden" name="_subject" value="📚 Nouveau téléchargement ebook">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://evanorofino.github.io/portfolio/ebook.html?ok=1">
+            <input type="hidden" name="source" value="landing-ebook">
+
+            <div class="form-row">
+                <input type="email" name="email" id="emailInput" required placeholder="votre@email.com">
+                <button type="submit">📥 Recevoir le guide</button>
+            </div>
+
+            <label class="form-checkbox">
+                <input type="checkbox" name="newsletter_opt_in" value="yes">
+                <span>(Optionnel) Recevoir 1 email par trimestre avec mes meilleurs contenus pour photographes pros. Désinscription en 1 clic.</span>
+            </label>
+        </form>
+
+        <p class="form-disclaimer">
+            🔒 Votre email reste confidentiel. Je ne le revends à personne, je n'envoie pas de pubs, et je ne vous démarche pas commercialement. Promis. Voir <a href="#privacy">détails</a>.
+        </p>
+
+        <div class="alt-download">
+            ⚡ Vous êtes pressé ? <a href="Guide-Site-Metier-Photographe-Pro.pdf" download>Téléchargez directement sans email</a>
+        </div>
+    </div>
+</section>
+
+<section class="preview">
+    <h2>Ce que vous <span class="gold">apprenez</span> dans le guide</h2>
+    <p class="preview-sub">6 chapitres pratiques, denses en infos actionnables — pas de blabla, pas de fluff.</p>
+
+    <div class="chapters">
+        <div class="chapter">
+            <div class="num">01</div>
+            <h3>Les 5 fonctions vitales d'un site de photographe pro</h3>
+            <p>Performance, galerie privée, réservation avec acompte, boutique, blog SEO. Ce qui manque = client perdu.</p>
+        </div>
+        <div class="chapter">
+            <div class="num">02</div>
+            <h3>Le piège des SaaS</h3>
+            <p>Pourquoi combiner Pixieset + Squarespace + Calendly + Stripe vous coûte 936 €/an + 4h/mois de votre temps.</p>
+        </div>
+        <div class="chapter">
+            <div class="num">03</div>
+            <h3>Combien doit coûter votre site ?</h3>
+            <p>Le tableau honnête des coûts sur 3 ans : SaaS patchwork (4 200 €) vs site métier dédié (4 800 €). Pourquoi 600 € d'écart valent 100x leur prix.</p>
+        </div>
+        <div class="chapter">
+            <div class="num">04</div>
+            <h3>Les 7 questions à poser à votre dev</h3>
+            <p>Avant de signer le devis. Propriété du code, framework, plugins, Lighthouse, garantie, itérations, démo live.</p>
+        </div>
+        <div class="chapter">
+            <div class="num">05</div>
+            <h3>Le planning de mise en production en 4 semaines</h3>
+            <p>Le calendrier jour par jour : kick-off J+1, maquette J+10, pré-prod J+21, mise en ligne J+30. Comment ne pas être le bottleneck.</p>
+        </div>
+        <div class="chapter">
+            <div class="num">06</div>
+            <h3>Pour aller plus loin</h3>
+            <p>Découverte de Studio Photo (ma plateforme métier complète) — démo, tarifs, et comment réserver un appel.</p>
+        </div>
+    </div>
+</section>
+
+<section class="author-section">
+    <div class="author-wrap">
+        <div class="author-avatar">E</div>
+        <div class="author-info">
+            <h3>Evan Orofino</h3>
+            <div class="role">Dev Symfony freelance · Lyon</div>
+            <p>Je construis depuis 2 ans des plateformes web métier sur mesure pour les photographes pros qui veulent arrêter de bricoler avec 5 outils différents. Ce guide est le résumé de ce que j'ai appris en parlant à une vingtaine d'entre eux.</p>
+            <div class="links">
+                <a href="index.html">Portfolio</a>
+                <a href="studio-photo.html">Studio Photo</a>
+                <a href="https://github.com/EvanOROFINO" target="_blank" rel="noopener">GitHub</a>
+                <a href="mailto:evanorofino.pro@gmail.com">Email</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2026 Evan Orofino · <a href="index.html">Portfolio</a> · <a href="studio-photo.html">Studio Photo</a> · <a href="tarifs.html">Tarifs</a> · <a href="blog-wordpress-photographes.html">Blog</a></p>
+</footer>
+
+<script>
+    // Show success message if redirected back from form submission
+    if (window.location.search.includes('ok=1')) {
+        document.getElementById('successMsg').classList.add('show');
+        document.getElementById('formTitle').style.display = 'none';
+        document.getElementById('formIntro').style.display = 'none';
+        document.getElementById('ebookForm').style.display = 'none';
+        // Scroll to the success message
+        setTimeout(() => {
+            document.querySelector('.form-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+    }
+</script>
+
+</body>
+</html>
