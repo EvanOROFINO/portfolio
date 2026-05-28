@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Photo — Plateforme web pour photographe pro | Evan Orofino</title>
+    <meta name="description" content="Site complet pour photographe : galerie, galerie privée client, réservation Stripe, calendrier, blog SEO, boutique. 3 000 € tout compris, livré en 2 semaines.">
+
+    <meta property="og:title" content="Studio Photo — Plateforme web pour photographe pro">
+    <meta property="og:description" content="Galerie + galerie privée client + réservation Stripe + calendrier + boutique tirages. Tout intégré. 3 000 € livré clé en main.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/home.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Page-specific palette — black/gold to match Studio Photo branding */
+        :root {
+            --sp-ink: #1a1a1a;
+            --sp-paper: #fafaf7;
+            --sp-surface: #ffffff;
+            --sp-accent: #c8a97e;
+            --sp-accent-dark: #a88a62;
+            --sp-muted: #6b6b6b;
+            --sp-border: #e8e3d5;
+        }
+        .sp-page {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--sp-ink);
+            background: var(--sp-paper);
+            min-height: 100vh;
+        }
+        .sp-page * { box-sizing: border-box; }
+        .sp-page .serif { font-family: 'Playfair Display', Georgia, serif; }
+
+        /* Top bar */
+        .sp-nav {
+            background: var(--sp-ink);
+            color: #fff;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .sp-nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .sp-nav a.back { color: var(--sp-accent); text-decoration: none; font-size: 0.9rem; }
+        .sp-nav a.back:hover { color: #fff; }
+        .sp-nav .cta { background: var(--sp-accent); color: #fff !important; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+
+        /* Hero */
+        .sp-hero {
+            background: var(--sp-ink);
+            color: #fff;
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+        .sp-hero p.tag {
+            color: var(--sp-accent);
+            letter-spacing: 0.3em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0 16px;
+            text-transform: uppercase;
+        }
+        .sp-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 700;
+            margin: 0 0 24px;
+            line-height: 1.1;
+        }
+        .sp-hero .subtitle {
+            font-size: 1.2rem;
+            max-width: 680px;
+            margin: 0 auto 32px;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+        .sp-hero .price-tag {
+            display: inline-block;
+            background: var(--sp-accent);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+        .sp-hero .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .sp-hero .btn-primary {
+            background: var(--sp-accent);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sp-hero .btn-primary:hover { background: var(--sp-accent-dark); }
+        .sp-hero .btn-secondary {
+            background: transparent;
+            color: #fff;
+            padding: 14px 28px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .sp-hero .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* Section common */
+        .sp-section { padding: 80px 0; }
+        .sp-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            margin: 0 0 16px;
+            text-align: center;
+        }
+        .sp-section p.intro {
+            text-align: center;
+            color: var(--sp-muted);
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin: 0 auto 56px;
+            line-height: 1.6;
+        }
+        .sp-section .tag {
+            color: var(--sp-accent);
+            letter-spacing: 0.3em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .sp-section.alt { background: var(--sp-surface); }
+        .sp-section.dark { background: var(--sp-ink); color: #fff; }
+        .sp-section.dark h2 { color: #fff; }
+        .sp-section.dark p.intro { color: rgba(255,255,255,0.7); }
+        .sp-section.dark .tag { color: var(--sp-accent); }
+
+        /* Features grid */
+        .sp-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .sp-feature {
+            background: var(--sp-surface);
+            border: 1px solid var(--sp-border);
+            border-radius: 8px;
+            padding: 28px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .sp-feature:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+        .sp-feature .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .sp-feature h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin: 0 0 8px;
+        }
+        .sp-feature p {
+            color: var(--sp-muted);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* Screenshots */
+        .sp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }
+        .sp-shot {
+            background: var(--sp-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--sp-border);
+        }
+        .sp-shot img { width: 100%; height: auto; display: block; }
+        .sp-shot .caption { padding: 14px 18px; font-size: 0.85rem; color: var(--sp-muted); }
+        .sp-shot .caption strong { color: var(--sp-ink); display: block; margin-bottom: 2px; }
+
+        /* Workflow */
+        .sp-workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+        .sp-step {
+            text-align: center;
+            padding: 24px 12px;
+        }
+        .sp-step .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--sp-accent);
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .sp-step h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin: 0 0 8px;
+        }
+        .sp-step p {
+            color: var(--sp-muted);
+            font-size: 0.85rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Pricing card */
+        .sp-pricing {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #fff;
+            border: 2px solid var(--sp-accent);
+            border-radius: 12px;
+            padding: 48px;
+            text-align: center;
+        }
+        .sp-pricing h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin: 0 0 12px;
+        }
+        .sp-pricing .price {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--sp-ink);
+            margin: 16px 0 8px;
+            line-height: 1;
+        }
+        .sp-pricing .price-meta {
+            color: var(--sp-muted);
+            font-size: 0.9rem;
+            margin: 0 0 24px;
+        }
+        .sp-pricing ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px;
+            text-align: left;
+        }
+        .sp-pricing li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sp-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        .sp-pricing li:last-child { border-bottom: 0; }
+        .sp-pricing li::before {
+            content: "✓";
+            color: var(--sp-accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .sp-pricing .btn-buy {
+            background: var(--sp-ink);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        .sp-pricing .btn-buy:hover { background: #000; }
+
+        /* FAQ */
+        .sp-faq { max-width: 800px; margin: 0 auto; }
+        .sp-faq details {
+            background: var(--sp-surface);
+            border: 1px solid var(--sp-border);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+        .sp-faq details[open] { border-color: var(--sp-accent); }
+        .sp-faq summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            list-style: none;
+            position: relative;
+            padding-right: 32px;
+        }
+        .sp-faq summary::after {
+            content: "+";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--sp-accent);
+        }
+        .sp-faq details[open] summary::after { content: "−"; }
+        .sp-faq p {
+            color: var(--sp-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 16px 0 0;
+        }
+
+        /* Stats bar */
+        .sp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+        .sp-stat { text-align: center; }
+        .sp-stat .big {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--sp-accent);
+            line-height: 1;
+        }
+        .sp-stat .label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Final CTA */
+        .sp-final {
+            background: var(--sp-ink);
+            color: #fff;
+            text-align: center;
+            padding: 80px 0;
+        }
+        .sp-final h2 { color: #fff; font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 0 0 16px; }
+        .sp-final p { color: rgba(255,255,255,0.75); font-size: 1.1rem; margin: 0 0 32px; }
+
+        /* Container helper */
+        .sp-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    </style>
+</head>
+<body class="sp-page">
+
+    <!-- Sticky nav -->
+    <div class="sp-nav">
+        <div class="sp-container container">
+            <a href="index.html" class="back">← Retour au portfolio</a>
+            <a href="index.html#contact" class="cta">Me contacter</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="sp-hero">
+        <div class="sp-container">
+            <p class="tag">Plateforme métier pour photographe pro</p>
+            <h1 class="serif">Vendez plus.<br>Livrez mieux.<br>Gardez vos clients.</h1>
+            <p class="subtitle">
+                Un site complet branché à Stripe et à un back-office riche, qui couvre tout votre cycle de vente —
+                du premier visiteur jusqu'à la livraison des photos finales.
+            </p>
+            <div class="price-tag">À partir de 3 000 € TTC, payable en 2 fois</div>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-primary">📋 Voir l'offre détaillée</a>
+                <a href="https://github.com/EvanOROFINO/studio-photo" target="_blank" rel="noopener" class="btn-secondary">📦 Code source GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Constat -->
+    <section class="sp-section">
+        <div class="sp-container">
+            <span class="tag">Le problème</span>
+            <h2 class="serif">Vous perdez du temps et du chiffre d'affaires.</h2>
+            <p class="intro">
+                70% des sites de photographes professionnels sont des WordPress avec une simple galerie statique. Aucune automatisation,
+                aucune réservation en ligne, aucune boutique. Le photographe perd <strong>3 heures par semaine</strong>
+                en facturation et livraison manuelle — et passe à côté de <strong>—40% de CA potentiel</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="sp-section alt">
+        <div class="sp-container">
+            <span class="tag">La solution</span>
+            <h2 class="serif">Votre business, en une seule plateforme.</h2>
+            <p class="intro">
+                Une seule installation, sous votre nom de domaine, qui automatise tout : de la première visite à la livraison finale.
+            </p>
+
+            <div class="sp-workflow">
+                <div class="sp-step">
+                    <div class="num">1</div>
+                    <h4>Vitrine</h4>
+                    <p>Galerie + blog + témoignages SEO-optimisés</p>
+                </div>
+                <div class="sp-step">
+                    <div class="num">2</div>
+                    <h4>Devis</h4>
+                    <p>Formulaire intelligent + email automatique</p>
+                </div>
+                <div class="sp-step">
+                    <div class="num">3</div>
+                    <h4>Réservation</h4>
+                    <p>Acompte CB Stripe + calendrier dispo</p>
+                </div>
+                <div class="sp-step">
+                    <div class="num">4</div>
+                    <h4>Livraison</h4>
+                    <p>Galerie privée client + ZIP téléchargeable</p>
+                </div>
+                <div class="sp-step">
+                    <div class="num">5</div>
+                    <h4>Vente++</h4>
+                    <p>Boutique tirages + codes promo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aperçu visuel -->
+    <section class="sp-section">
+        <div class="sp-container">
+            <span class="tag">Aperçu</span>
+            <h2 class="serif">Ce que voient vos visiteurs.</h2>
+            <p class="intro">Captures du site réel — adaptable à votre identité, vos couleurs, vos photos.</p>
+
+            <div class="sp-shots">
+                <div class="sp-shot">
+                    <img src="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/home.png" alt="Page d'accueil" loading="lazy">
+                    <div class="caption"><strong>Accueil</strong>Hero + photos à la une + catégories + témoignages</div>
+                </div>
+                <div class="sp-shot">
+                    <img src="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/gallery.png" alt="Galerie" loading="lazy">
+                    <div class="caption"><strong>Galerie</strong>Grille masonry + filtres par tag + lightbox</div>
+                </div>
+                <div class="sp-shot">
+                    <img src="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/shop.png" alt="Boutique" loading="lazy">
+                    <div class="caption"><strong>Boutique tirages</strong>Catalogue + panier + paiement Stripe + codes promo</div>
+                </div>
+                <div class="sp-shot">
+                    <img src="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/availability.png" alt="Disponibilités" loading="lazy">
+                    <div class="caption"><strong>Calendrier des dispos</strong>FullCalendar synchronisé avec vos réservations</div>
+                </div>
+                <div class="sp-shot">
+                    <img src="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/blog.png" alt="Blog" loading="lazy">
+                    <div class="caption"><strong>Blog SEO</strong>Articles markdown + RSS + JSON-LD pour Google</div>
+                </div>
+                <div class="sp-shot">
+                    <img src="https://raw.githubusercontent.com/EvanOROFINO/studio-photo/main/docs/screenshots/testimonials.png" alt="Témoignages" loading="lazy">
+                    <div class="caption"><strong>Avis clients</strong>Témoignages avec avatars + notation 5★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features grid -->
+    <section class="sp-section alt">
+        <div class="sp-container">
+            <span class="tag">Tout inclus</span>
+            <h2 class="serif">20 fonctionnalités. Aucun add-on caché.</h2>
+            <p class="intro">Vous n'achetez pas un thème, vous récupérez un outil métier complet, sur mesure.</p>
+
+            <div class="sp-features">
+                <div class="sp-feature">
+                    <div class="icon">📸</div>
+                    <h3>Site vitrine</h3>
+                    <p>Accueil, galerie filtrable, prestations, témoignages, blog, à propos, FAQ, contact.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">🔒</div>
+                    <h3>Galerie privée client</h3>
+                    <p>Token + mot de passe + expiration auto. Vos clients téléchargent leurs photos sans WeTransfer.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">💳</div>
+                    <h3>Réservation Stripe</h3>
+                    <p>Acompte 30% encaissé directement, date verrouillée, plus de no-show.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">📅</div>
+                    <h3>Calendrier disponibilités</h3>
+                    <p>Vos clients voient en temps réel quand vous êtes libre. Plus d'aller-retours email.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">🛍️</div>
+                    <h3>Boutique tirages</h3>
+                    <p>Vendez vos photos en tirage d'art. Panier, Stripe Checkout, codes promo, gestion stock.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">📝</div>
+                    <h3>Blog SEO + RSS</h3>
+                    <p>Éditeur markdown, JSON-LD pour Google, flux RSS pour fidéliser vos visiteurs.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">📊</div>
+                    <h3>Dashboard analytics</h3>
+                    <p>8 KPI + 6 graphiques : CA, conversions, photos vues, demandes par type.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">⚖️</div>
+                    <h3>RGPD complet</h3>
+                    <p>Mentions légales, politique de confidentialité, bandeau cookies. Conformité européenne.</p>
+                </div>
+                <div class="sp-feature">
+                    <div class="icon">🌐</div>
+                    <h3>Multi-langue FR / EN</h3>
+                    <p>Pour cibler les mariages internationaux et les clients étrangers à Lyon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats sociales (dark section) -->
+    <section class="sp-section dark">
+        <div class="sp-container">
+            <span class="tag">Construit aux standards des startups françaises</span>
+            <h2 class="serif">Une plateforme professionnelle, pas un bricolage.</h2>
+            <p class="intro" style="margin-bottom: 56px;">
+                Le code source est public sur GitHub. Vérifiez la qualité avant même de signer.
+            </p>
+
+            <div class="sp-stats">
+                <div class="sp-stat">
+                    <div class="big">49</div>
+                    <div class="label">tests automatisés</div>
+                </div>
+                <div class="sp-stat">
+                    <div class="big">20</div>
+                    <div class="label">fonctionnalités</div>
+                </div>
+                <div class="sp-stat">
+                    <div class="big">19</div>
+                    <div class="label">entités métier</div>
+                </div>
+                <div class="sp-stat">
+                    <div class="big">100%</div>
+                    <div class="label">code public sur GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="sp-section" id="pricing">
+        <div class="sp-container">
+            <span class="tag">Tarif</span>
+            <h2 class="serif">Un seul pack. Tout inclus.</h2>
+            <p class="intro">Pas d'add-on, pas de frais cachés. Vous savez exactement ce que vous payez.</p>
+
+            <div class="sp-pricing">
+                <h3>Pack Studio Photo</h3>
+                <p style="color: var(--sp-muted);">Site complet, déployé sous votre nom de domaine, formé en 1 demi-journée.</p>
+                <div class="price">3 000 €</div>
+                <p class="price-meta">TTC, payable en 2 fois sans frais</p>
+
+                <ul>
+                    <li>Développement complet sur mesure</li>
+                    <li>Personnalisation à votre identité</li>
+                    <li>Installation sur votre nom de domaine</li>
+                    <li>Migration de vos photos existantes</li>
+                    <li>Formation 3h sur le back-office</li>
+                    <li>Garantie satisfait ou remboursé 30 jours</li>
+                </ul>
+
+                <a href="index.html#contact" class="btn-buy">Réserver un appel gratuit</a>
+                <p style="margin-top: 20px; font-size: 0.85rem; color: var(--sp-muted);">+ 50 € / mois pour l'hébergement haute disponibilité, sauvegardes quotidiennes et mises à jour de sécurité.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sp-section alt">
+        <div class="sp-container">
+            <span class="tag">FAQ</span>
+            <h2 class="serif">Vous vous demandez peut-être…</h2>
+            <p class="intro">Les questions que tous les photographes posent avant de signer.</p>
+
+            <div class="sp-faq">
+                <details>
+                    <summary>Combien de temps avant la mise en ligne ?</summary>
+                    <p>2 semaines en moyenne, à partir du jour où vous me fournissez vos photos et votre identité visuelle.
+                    La 1ère semaine = personnalisation (couleurs, textes, photos). La 2ème = mise en ligne sur votre domaine et formation.</p>
+                </details>
+
+                <details>
+                    <summary>Et si je ne suis pas satisfait ?</summary>
+                    <p>Garantie satisfait ou remboursé 30 jours. Si dans le mois qui suit la mise en ligne vous trouvez que ça ne correspond pas
+                    à ce qui vous a été présenté, je vous rembourse intégralement.</p>
+                </details>
+
+                <details>
+                    <summary>Je suis nul en informatique, je peux gérer le back-office ?</summary>
+                    <p>Le back-office est conçu pour des non-techniciens : tout se fait en cliquant, jamais de code à toucher. Je vous forme 3h
+                    en visio ou en physique à Lyon. Vous saurez ajouter une photo, modifier un tarif, gérer une commande, etc.</p>
+                </details>
+
+                <details>
+                    <summary>Le paiement Stripe, c'est compliqué à mettre en place ?</summary>
+                    <p>Non. Vous créez un compte sur stripe.com (gratuit, 15 min), je récupère vos clés API, et je connecte tout pour vous.
+                    Stripe prélève 1,4% + 0,25€ par transaction réussie — c'est tout.</p>
+                </details>
+
+                <details>
+                    <summary>Et si je veux ajouter une fonctionnalité plus tard ?</summary>
+                    <p>Le code vous appartient. Soit vous trouvez un dev qui le reprend (Symfony est très répandu en France), soit vous me recontactez :
+                    je devise les évolutions à 600€/jour. Le tarif "+50€/mois" couvre les mises à jour de sécurité et les petites corrections.</p>
+                </details>
+
+                <details>
+                    <summary>Comment je sais que c'est vous qui avez tout fait ?</summary>
+                    <p>Le code source est <a href="https://github.com/EvanOROFINO/studio-photo" target="_blank" rel="noopener" style="color: var(--sp-accent);">100% public sur GitHub</a>,
+                    avec mon historique de commits depuis le premier jour. Vous pouvez tout vérifier — y compris les tests automatisés (49 verts) et
+                    le pipeline d'intégration continue.</p>
+                </details>
+
+                <details>
+                    <summary>Vous travaillez avec quel type de photographes ?</summary>
+                    <p>Mariage, portrait, événementiel d'entreprise, grossesse / bébé. La plateforme s'adapte. Les seuls qui pourraient être déçus :
+                    les photographes-reporters qui ne vendent que de la prestation médias (pas de besoin de boutique ni de galerie privée).</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="sp-final">
+        <div class="sp-container">
+            <h2 class="serif">Discutons de votre projet.</h2>
+            <p>Un appel de 20 minutes, sans engagement, où je vous montre la démo et on voit si on est faits pour travailler ensemble.</p>
+            <a href="index.html#contact" class="btn-primary" style="background: var(--sp-accent); color: #fff; padding: 16px 36px; border-radius: 4px; text-decoration: none; font-weight: 600; display: inline-block;">
+                📞 Réserver un appel découverte
+            </a>
+            <p style="margin-top: 32px; font-size: 0.9rem; opacity: 0.6;">
+                Evan Orofino — Développeur Symfony freelance, Lyon<br>
+                evanorofino.pro@gmail.com
+            </p>
+        </div>
+    </section>
+
+</body>
+</html>
