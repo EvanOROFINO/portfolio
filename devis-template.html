@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Devis Studio Photo — Evan Orofino</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: 'Inter', system-ui, Arial, sans-serif;
+        color: #1a1a1a;
+        background: #fff;
+        font-size: 10pt;
+        line-height: 1.5;
+    }
+    .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 18mm 18mm;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* Header band */
+    .head-band {
+        background: #1a1a1a;
+        color: #fff;
+        margin: -18mm -18mm 24px -18mm;
+        padding: 18mm 18mm 14px 18mm;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .head-band .brand h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 24pt;
+        margin: 0;
+        font-weight: 700;
+    }
+    .head-band .brand p { margin: 4px 0 0; color: #c8a97e; font-size: 9.5pt; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .head-band .ref { text-align: right; font-size: 9pt; color: #ccc; }
+    .head-band .ref strong { color: #c8a97e; font-size: 11pt; }
+
+    /* Parties */
+    .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+    .party {
+        padding: 14px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+    }
+    .party.dest { border-left: 3px solid #c8a97e; }
+    .party h3 {
+        font-size: 8.5pt;
+        margin: 0 0 8px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 600;
+    }
+    .party p { margin: 2px 0; font-size: 9.5pt; }
+    .party strong { font-size: 11pt; }
+
+    /* Section titles */
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 13pt;
+        margin: 20px 0 10px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #1a1a1a;
+        color: #1a1a1a;
+    }
+
+    /* Items table */
+    table.items {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 9.5pt;
+    }
+    table.items thead th {
+        background: #1a1a1a;
+        color: #fff;
+        text-align: left;
+        padding: 8px 10px;
+        font-weight: 600;
+        font-size: 9pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    table.items thead th.right { text-align: right; }
+    table.items tbody td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+    table.items tbody td.right { text-align: right; white-space: nowrap; }
+    table.items tbody tr:last-child td { border-bottom: 0; }
+    table.items .desc { color: #666; font-size: 8.5pt; margin-top: 3px; }
+
+    /* Totals */
+    .totals {
+        margin-top: 16px;
+        margin-left: auto;
+        width: 60%;
+        font-size: 10pt;
+    }
+    .totals .row { display: flex; justify-content: space-between; padding: 5px 0; }
+    .totals .row.major {
+        background: #1a1a1a;
+        color: #fff;
+        margin-top: 6px;
+        padding: 10px 14px;
+        border-radius: 3px;
+    }
+    .totals .row.major strong { color: #c8a97e; font-size: 14pt; }
+    .totals .row.discount { color: #198754; }
+
+    /* Conditions */
+    .conditions {
+        margin-top: 20px;
+        padding: 14px 18px;
+        background: #faf7f0;
+        border-left: 3px solid #c8a97e;
+        font-size: 9pt;
+        line-height: 1.6;
+    }
+    .conditions h3 {
+        font-size: 9pt;
+        margin: 0 0 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #888;
+    }
+    .conditions ul { margin: 6px 0 0; padding-left: 18px; }
+    .conditions li { margin-bottom: 3px; }
+
+    /* Signature */
+    .sign-block {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+    .sign-box {
+        border: 1px solid #ccc;
+        padding: 16px;
+        border-radius: 4px;
+    }
+    .sign-box h4 {
+        margin: 0 0 6px;
+        font-size: 9pt;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #888;
+    }
+    .sign-box p { font-size: 9pt; color: #666; margin: 0 0 30px; }
+    .sign-box .line {
+        border-top: 1px solid #ccc;
+        margin-top: 30px;
+        padding-top: 4px;
+        font-size: 8pt;
+        color: #888;
+        text-align: center;
+    }
+
+    /* Footer band */
+    .footer {
+        margin: 24px -18mm -18mm -18mm;
+        padding: 12px 18mm;
+        background: #1a1a1a;
+        color: #ccc;
+        font-size: 8.5pt;
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer .accent { color: #c8a97e; }
+
+    .fill {
+        color: #c8a97e;
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    @media print {
+        body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+</style>
+</head>
+<body>
+<div class="page">
+
+    <div class="head-band">
+        <div class="brand">
+            <h1>DEVIS</h1>
+            <p>Plateforme Studio Photo</p>
+        </div>
+        <div class="ref">
+            <strong>N° DEV-2026-001</strong><br>
+            Émis le <span class="fill">{{date}}</span><br>
+            Valable jusqu'au <span class="fill">{{date+30j}}</span>
+        </div>
+    </div>
+
+    <!-- Parties -->
+    <div class="parties">
+        <div class="party">
+            <h3>Prestataire</h3>
+            <p><strong>Evan Orofino</strong></p>
+            <p>Développeur Symfony freelance</p>
+            <p>Auto-entrepreneur — SIRET : <span class="fill">{{votre SIRET}}</span></p>
+            <p>📍 Lyon, France</p>
+            <p>✉️ evanorofino.pro@gmail.com</p>
+            <p>📞 <span class="fill">{{votre téléphone}}</span></p>
+            <p>🌐 evanorofino.github.io/portfolio</p>
+        </div>
+        <div class="party dest">
+            <h3>Client</h3>
+            <p><strong><span class="fill">{{Nom du photographe}}</span></strong></p>
+            <p><span class="fill">{{Studio / raison sociale, si applicable}}</span></p>
+            <p><span class="fill">{{Adresse rue}}</span></p>
+            <p><span class="fill">{{Code postal Ville}}</span></p>
+            <p><span class="fill">{{SIRET si pro}}</span></p>
+            <p>✉️ <span class="fill">{{email}}</span></p>
+            <p>📞 <span class="fill">{{téléphone}}</span></p>
+        </div>
+    </div>
+
+    <h2>Objet du devis</h2>
+    <p style="margin: 0 0 16px;">
+        Conception, développement et déploiement de la plateforme web métier <strong>« Studio Photo »</strong>,
+        personnalisée à l'identité du client. La plateforme inclut un site vitrine, une galerie publique,
+        une galerie privée sécurisée pour les clients finaux, un système de réservation en ligne avec acompte
+        via Stripe, un calendrier des disponibilités, un blog SEO, une boutique de tirages d'art et un back-office
+        complet d'administration.
+    </p>
+
+    <h2>Détail des prestations</h2>
+    <table class="items">
+        <thead>
+            <tr>
+                <th style="width: 55%;">Prestation</th>
+                <th class="right" style="width: 10%;">Qté</th>
+                <th class="right" style="width: 17.5%;">PU HT</th>
+                <th class="right" style="width: 17.5%;">Total HT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Plateforme Studio Photo — Pack complet</strong>
+                    <div class="desc">
+                        Site vitrine + galerie publique + galerie privée client + réservation Stripe +
+                        calendrier des dispos + blog SEO + boutique tirages + dashboard analytics +
+                        conformité RGPD + multi-langue FR/EN. 20 fonctionnalités, code source remis.
+                    </div>
+                </td>
+                <td class="right">1</td>
+                <td class="right">2 500,00 €</td>
+                <td class="right">2 500,00 €</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Personnalisation à votre identité</strong>
+                    <div class="desc">
+                        Adaptation couleurs, polices, logo, contenus textuels et photos. Configuration
+                        des prestations (tarifs, durées) et des catégories de la galerie.
+                    </div>
+                </td>
+                <td class="right">1</td>
+                <td class="right">300,00 €</td>
+                <td class="right">300,00 €</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Mise en ligne sur votre nom de domaine</strong>
+                    <div class="desc">
+                        Configuration de l'hébergement, déploiement, certificat HTTPS (Let's Encrypt),
+                        configuration DNS, tests de production.
+                    </div>
+                </td>
+                <td class="right">1</td>
+                <td class="right">200,00 €</td>
+                <td class="right">200,00 €</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Formation au back-office (3h, en visio ou Lyon présentiel)</strong>
+                    <div class="desc">
+                        Tour complet du dashboard, ajout photos, gestion des réservations, mise en ligne
+                        d'articles blog, gestion de la boutique, exports clients. Captation vidéo fournie.
+                    </div>
+                </td>
+                <td class="right">1</td>
+                <td class="right">Inclus</td>
+                <td class="right">0,00 €</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="totals">
+        <div class="row"><span>Sous-total HT</span><span>3 000,00 €</span></div>
+        <div class="row"><span>TVA (non applicable, art. 293 B du CGI)</span><span>0,00 €</span></div>
+        <div class="row major"><span><strong>TOTAL TTC</strong></span><strong>3 000,00 €</strong></div>
+    </div>
+
+    <div class="conditions">
+        <h3>Conditions de paiement</h3>
+        <ul>
+            <li><strong>Acompte de 50% (1 500 €)</strong> à la signature du devis, par virement bancaire.</li>
+            <li><strong>Solde de 50% (1 500 €)</strong> à la mise en ligne (livraison validée par recette client).</li>
+            <li>Paiement par virement bancaire — IBAN communiqué après signature.</li>
+            <li>Pas de TVA applicable (art. 293 B du CGI — auto-entrepreneur en franchise).</li>
+        </ul>
+    </div>
+
+    <div class="conditions" style="background: #f0f7ff; border-left-color: #1a73e8;">
+        <h3>Délais & garanties</h3>
+        <ul>
+            <li><strong>Livraison sous 14 jours ouvrés</strong> à compter de la réception de l'acompte et des éléments client (photos, identité visuelle).</li>
+            <li><strong>Garantie satisfait ou remboursé 30 jours</strong> après mise en ligne — si la plateforme ne correspond pas aux engagements de ce devis, remboursement intégral.</li>
+            <li><strong>Maintenance optionnelle</strong> : 50 € / mois HT (hébergement haute disponibilité + sauvegardes quotidiennes + correctifs de sécurité). Sans engagement, résiliable à tout moment.</li>
+            <li><strong>Code source remis</strong> au client à la livraison (vous n'êtes pas lock-in).</li>
+        </ul>
+    </div>
+
+    <div class="sign-block">
+        <div class="sign-box">
+            <h4>Bon pour accord — Le client</h4>
+            <p>Signature précédée de la mention manuscrite<br><em>« Bon pour accord et signature du devis »</em></p>
+            <div class="line">Date et signature</div>
+        </div>
+        <div class="sign-box">
+            <h4>Le prestataire</h4>
+            <p>Evan Orofino<br>Développeur Symfony freelance</p>
+            <div class="line">Date et signature</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>Evan Orofino — Auto-entrepreneur — SIRET <span class="fill">{{votre SIRET}}</span></span>
+        <span class="accent">evanorofino.pro@gmail.com</span>
+    </div>
+
+</div>
+</body>
+</html>
