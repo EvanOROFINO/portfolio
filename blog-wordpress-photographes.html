@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pourquoi WordPress n'est pas fait pour les photographes professionnels — Evan Orofino</title>
+<meta name="description" content="7 raisons pour lesquelles WordPress freine les photographes pros : performance, sécurité, galeries privées, ecommerce, multi-comptes, maintenance. Une alternative métier existe.">
+<meta name="keywords" content="WordPress photographe, site photographe professionnel, alternative WordPress, plateforme métier photo">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Pourquoi WordPress n'est pas fait pour les photographes professionnels">
+<meta property="og:description" content="7 raisons techniques et business pour lesquelles WordPress est un mauvais choix pour les photographes pros.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://evanorofino.github.io/portfolio/blog-wordpress-photographes.html">
+<meta property="og:image" content="https://evanorofino.github.io/portfolio/og-image.jpg">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a1a1a' rx='20'/%3E%3Ctext x='50' y='62' font-family='Georgia' font-size='40' font-weight='700' text-anchor='middle' fill='%23c8a97e'%3EE%3C/text%3E%3C/svg%3E">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --bg: #fafaf7;
+        --text: #1a1a1a;
+        --text-muted: #555;
+        --gold: #c8a97e;
+        --gold-dark: #a68855;
+        --border: #e5e0d3;
+        --code-bg: #f4f1ea;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* === Top nav === */
+    .topnav {
+        background: var(--text);
+        color: #fff;
+        padding: 16px 24px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 2px solid var(--gold);
+    }
+    .topnav-inner {
+        max-width: 880px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .topnav .brand {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+    }
+    .topnav .brand .gold { color: var(--gold); }
+    .topnav .nav-links {
+        display: flex;
+        gap: 22px;
+        font-size: 14px;
+    }
+    .topnav .nav-links a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.15s;
+    }
+    .topnav .nav-links a:hover { color: var(--gold); }
+
+    /* === Hero === */
+    .hero {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        color: #fff;
+        padding: 70px 24px 80px;
+        text-align: center;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero .eyebrow {
+        color: var(--gold);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+    .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(34px, 5vw, 52px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 22px;
+        color: #fff;
+    }
+    .hero h1 .gold { color: var(--gold); font-style: italic; }
+    .hero .lede {
+        font-size: 19px;
+        color: #ccc;
+        line-height: 1.6;
+        max-width: 620px;
+        margin: 0 auto 30px;
+    }
+    .hero .meta {
+        font-size: 13px;
+        color: #999;
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        flex-wrap: wrap;
+    }
+    .hero .meta span:before { content: "• "; color: var(--gold); margin-right: 6px; }
+    .hero .meta span:first-child:before { content: ""; margin: 0; }
+
+    /* === Article === */
+    .article {
+        max-width: 720px;
+        margin: -30px auto 0;
+        padding: 60px 28px 60px;
+        background: #fff;
+        box-shadow: 0 -4px 30px rgba(0,0,0,0.04);
+        border-radius: 6px 6px 0 0;
+        position: relative;
+    }
+    .article h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 30px;
+        font-weight: 700;
+        margin: 48px 0 18px;
+        color: var(--text);
+        line-height: 1.25;
+        scroll-margin-top: 80px;
+    }
+    .article h2 .num {
+        color: var(--gold);
+        font-style: italic;
+        font-weight: 400;
+        margin-right: 6px;
+    }
+    .article h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        margin: 32px 0 12px;
+        color: var(--text);
+    }
+    .article p {
+        margin-bottom: 18px;
+        color: #2a2a2a;
+    }
+    .article strong { color: var(--text); font-weight: 700; }
+    .article em { font-style: italic; color: #444; }
+    .article ul, .article ol { margin: 14px 0 22px 24px; }
+    .article li { margin-bottom: 6px; }
+
+    .article .pull-quote {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--text);
+        border-left: 4px solid var(--gold);
+        padding: 14px 0 14px 24px;
+        margin: 28px 0;
+    }
+    .article .pull-quote .who {
+        display: block;
+        font-style: normal;
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-top: 8px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .article .stat-box {
+        background: linear-gradient(135deg, #faf8f3 0%, #f0eadd 100%);
+        border-left: 4px solid var(--gold);
+        padding: 20px 24px;
+        margin: 28px 0;
+        border-radius: 0 4px 4px 0;
+    }
+    .article .stat-box .stat-value {
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--gold-dark);
+        line-height: 1;
+        margin-bottom: 6px;
+    }
+    .article .stat-box .stat-label {
+        font-size: 14px;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .article .check-list {
+        list-style: none;
+        margin-left: 0;
+    }
+    .article .check-list li {
+        padding: 6px 0 6px 30px;
+        position: relative;
+        margin-bottom: 0;
+    }
+    .article .check-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 18px;
+    }
+    .article .x-list {
+        list-style: none;
+        margin-left: 0;
+    }
+    .article .x-list li {
+        padding: 6px 0 6px 30px;
+        position: relative;
+        margin-bottom: 0;
+    }
+    .article .x-list li:before {
+        content: "✗";
+        position: absolute;
+        left: 0;
+        color: #ef4444;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .article a {
+        color: var(--gold-dark);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+    }
+    .article a:hover { color: var(--gold); }
+
+    .article code {
+        background: var(--code-bg);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: 'SF Mono', Monaco, 'Cascadia Mono', monospace;
+        font-size: 14px;
+        color: #6b5021;
+    }
+
+    /* === Toc sticky === */
+    .toc {
+        background: #faf8f3;
+        border: 1px solid var(--border);
+        padding: 18px 22px;
+        border-radius: 4px;
+        margin: 30px 0;
+    }
+    .toc-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--text-muted);
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .toc ol {
+        margin: 0 0 0 22px;
+        padding: 0;
+        font-size: 15px;
+    }
+    .toc ol li { margin-bottom: 4px; }
+    .toc a { color: var(--text); text-decoration: none; }
+    .toc a:hover { color: var(--gold-dark); text-decoration: underline; }
+
+    /* === Final CTA === */
+    .final-cta {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        color: #fff;
+        padding: 60px 24px;
+        text-align: center;
+        margin-top: 60px;
+    }
+    .final-cta-inner { max-width: 720px; margin: 0 auto; }
+    .final-cta h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        margin-bottom: 14px;
+        color: #fff;
+    }
+    .final-cta h2 .gold { color: var(--gold); font-style: italic; }
+    .final-cta p {
+        color: #ccc;
+        font-size: 17px;
+        margin-bottom: 28px;
+        line-height: 1.6;
+    }
+    .btn-cta {
+        display: inline-block;
+        padding: 14px 32px;
+        background: var(--gold);
+        color: var(--text);
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 15px;
+        letter-spacing: 0.03em;
+        transition: all 0.2s;
+    }
+    .btn-cta:hover { background: #d6b88a; transform: translateY(-2px); }
+    .btn-ghost {
+        display: inline-block;
+        padding: 14px 28px;
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+        margin-left: 8px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    .btn-ghost:hover { color: #fff; border-color: var(--gold); }
+
+    /* === Author === */
+    .author {
+        max-width: 720px;
+        margin: 50px auto 0;
+        padding: 28px 28px;
+        display: flex;
+        gap: 22px;
+        align-items: center;
+        background: #fff;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+    }
+    .author-avatar {
+        width: 70px; height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1a1a1a 0%, var(--gold) 100%);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
+    }
+    .author-info h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+    .author-info p { font-size: 14px; color: var(--text-muted); margin: 0; }
+    .author-info .links { margin-top: 8px; font-size: 13px; }
+    .author-info .links a {
+        color: var(--gold-dark);
+        text-decoration: none;
+        margin-right: 14px;
+    }
+    .author-info .links a:hover { text-decoration: underline; }
+
+    /* === Footer === */
+    .footer {
+        background: var(--text);
+        color: #888;
+        padding: 30px 24px;
+        text-align: center;
+        font-size: 13px;
+        margin-top: 60px;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 640px) {
+        .hero { padding: 50px 20px 60px; }
+        .article { padding: 40px 22px 40px; margin-top: -20px; }
+        .article h2 { font-size: 24px; margin-top: 36px; }
+        .article .pull-quote { font-size: 19px; padding-left: 16px; }
+        .author { flex-direction: column; text-align: center; margin: 30px 16px 0; }
+        .topnav-inner .nav-links { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="topnav-inner">
+        <a href="index.html" class="brand">Evan <span class="gold">Orofino</span></a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="studio-photo.html">Studio Photo</a>
+            <a href="https://calendly.com/evanorofino-pro/20min" target="_blank" rel="noopener">Réserver un appel</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+        <div class="eyebrow">Article · Web pour photographes</div>
+        <h1>Pourquoi WordPress<br>n'est <span class="gold">pas fait</span><br>pour les photographes pros</h1>
+        <p class="lede">7 raisons techniques et business pour lesquelles cette plateforme universelle vous fait perdre du temps, des clients, et de l'argent. Et ce que vous pouvez faire à la place.</p>
+        <div class="meta">
+            <span>📅 28 mai 2026</span>
+            <span>⏱️ 7 min de lecture</span>
+            <span>✍️ Evan Orofino</span>
+        </div>
+    </div>
+</header>
+
+<main class="article">
+
+<p style="font-size:19px; color:#444; font-style:italic; padding-bottom:14px; border-bottom:1px solid var(--border);">
+    J'ai parlé à une vingtaine de photographes professionnels ces derniers mois. <strong>17 sur 20</strong> utilisent un site WordPress avec un thème acheté entre 39 € et 89 €. Et 17 sur 20 me disent la même chose, presque mot pour mot : <em>« Mon site, c'est compliqué. Je n'y touche pas. »</em>
+</p>
+
+<p>Ce n'est pas un hasard. Ce n'est pas non plus un manque de compétences techniques. C'est un problème structurel : <strong>WordPress n'a pas été conçu pour le métier de photographe professionnel</strong>. Il a été conçu, à l'origine, pour faire des blogs en 2003. Et il porte cette dette technique avec lui depuis 22 ans.</p>
+
+<p>Voici 7 raisons pour lesquelles un photographe qui veut vendre, livrer et fidéliser ses clients devrait sérieusement envisager autre chose.</p>
+
+<nav class="toc">
+    <div class="toc-title">Au sommaire</div>
+    <ol>
+        <li><a href="#perf">Le poids des thèmes & la lenteur perçue</a></li>
+        <li><a href="#galerie">La galerie privée client : le grand absent</a></li>
+        <li><a href="#ecom">L'e-commerce de tirages : une usine à gaz</a></li>
+        <li><a href="#plugins">L'enfer des plugins (et leurs mises à jour)</a></li>
+        <li><a href="#secu">Les failles de sécurité et le piratage</a></li>
+        <li><a href="#agenda">L'agenda de réservation : un patchwork instable</a></li>
+        <li><a href="#cout">Le vrai coût total sur 3 ans</a></li>
+    </ol>
+</nav>
+
+<h2 id="perf"><span class="num">01.</span> Le poids des thèmes & la lenteur perçue</h2>
+
+<p>Un thème WordPress « photographe » moyen pèse, à vide, entre <strong>3 et 8 Mo</strong> de CSS, JavaScript et plugins inclus. Une fois vos 30 photos ajoutées en haute résolution, on arrive vite à <strong>15-20 Mo par page</strong>.</p>
+
+<p>Sur une connexion fibre, ça reste tolérable. Sur 4G en mobilité — c'est-à-dire <strong>60% du trafic réel d'un site de photographe</strong> selon les analytics que j'ai consultés — votre page met 5 à 8 secondes à apparaître.</p>
+
+<div class="stat-box">
+    <div class="stat-value">53%</div>
+    <div class="stat-label">des visiteurs mobile quittent un site si le chargement dépasse 3 secondes (source : Google).</div>
+</div>
+
+<p>Le problème n'est pas WordPress lui-même : ce sont les <strong>thèmes universels chargés à bloc</strong>, conçus pour plaire à 1 000 acheteurs différents (mariage, food, voyage, immobilier…) plutôt qu'à votre cas précis. Vous chargez 90% de code que vous n'utilisez jamais.</p>
+
+<p>Un site métier pensé pour vous, à l'inverse, charge ce qu'il faut et seulement ça : <strong>moins de 800 Ko par page</strong>, des images optimisées en WebP et chargées progressivement (lazy loading natif), un score Lighthouse de 90+ en performance.</p>
+
+<h2 id="galerie"><span class="num">02.</span> La galerie privée client : le grand absent</h2>
+
+<p>Quand un mariage est shooté, vous livrez 300 à 800 photos à vos mariés. Sur WordPress, comment faites-vous ?</p>
+
+<p>Trois options possibles, toutes mauvaises :</p>
+
+<ul class="x-list">
+    <li><strong>WeTransfer</strong> : lien qui expire en 7 jours, pas de marque, pas de protection par mot de passe. Vos mariés perdent le lien et vous redemandent les photos 6 mois après.</li>
+    <li><strong>Google Drive</strong> : interface qui ne ressemble pas à votre marque, demande aux clients d'avoir un compte Google.</li>
+    <li><strong>Pixieset / Pic-Time</strong> : excellent mais <strong>40 € à 50 € par mois</strong> en abonnement à vie, en plus de votre site WordPress.</li>
+</ul>
+
+<p>Un site métier intègre la galerie privée directement. Chaque mariage / portrait / corporate a sa propre URL privée (ex: <code>votresite.fr/galerie/dupont-2026</code>), protégée par mot de passe, avec téléchargement HD, sélection de favoris par le client, et tracking des vues. <strong>Inclus, pas d'abonnement.</strong></p>
+
+<div class="pull-quote">
+    « Je payais Pixieset 480 € par an pour faire une chose que mon site aurait dû savoir faire dès le départ. »
+    <span class="who">— Photographe mariage, Lyon (témoignage anonymisé)</span>
+</div>
+
+<h2 id="ecom"><span class="num">03.</span> L'e-commerce de tirages : une usine à gaz</h2>
+
+<p>Si vous vendez des tirages physiques (papier Fine Art, baryté, toiles…) ou des produits dérivés (albums, fichiers haute résolution), WordPress vous oblige à installer <strong>WooCommerce</strong>. C'est gratuit. C'est aussi monumental.</p>
+
+<p>WooCommerce, c'est :</p>
+
+<ul class="x-list">
+    <li>+47 tables dans votre base de données (rien que pour le module ecommerce)</li>
+    <li>10 à 15 plugins payants supplémentaires pour avoir les fonctionnalités basiques (transporteur, génération de factures, gestion TVA)</li>
+    <li>Une interface admin si surchargée que vous ne touchez à rien de peur de tout casser</li>
+    <li>Des intégrations Stripe qui marchent une fois sur deux après une mise à jour</li>
+</ul>
+
+<p>Pour 10 tirages vendus par mois, vous avez installé un cargo où il vous fallait un vélo.</p>
+
+<p>Une plateforme métier pensée pour photographe : <strong>une table « produits », une table « commandes », un paiement Stripe intégré, un panier en session, une page de remerciement automatique avec téléchargement immédiat si le produit est numérique</strong>. Net, propre, sans plugins à mettre à jour.</p>
+
+<h2 id="plugins"><span class="num">04.</span> L'enfer des plugins (et leurs mises à jour)</h2>
+
+<p>Un site WordPress de photographe utilise en moyenne <strong>17 à 24 plugins</strong> : galerie, lightbox, formulaire de contact, anti-spam, SEO, cache, optimisation images, sécurité, sauvegarde, réseaux sociaux, statistiques, RGPD, popup, ecommerce, réservation, multi-langue, traduction, paiement…</p>
+
+<p>Chaque plugin est développé par un éditeur différent, avec son propre rythme de mise à jour, sa propre qualité de code, et sa propre logique de support.</p>
+
+<p>Résultat concret pour vous, chaque mois :</p>
+
+<ol>
+    <li>Vous vous connectez à l'admin et voyez <strong>14 plugins à mettre à jour</strong>.</li>
+    <li>Vous mettez à jour. Le plugin « WP Forms » devient incompatible avec « WP Rocket ».</li>
+    <li>Le formulaire de contact ne marche plus pendant 3 jours.</li>
+    <li>Vous appelez un freelance qui vous facture 80 € pour réparer.</li>
+    <li>Recommencer le mois suivant.</li>
+</ol>
+
+<p>Sur un site métier dédié, il n'y a <strong>pas de plugins</strong>. Tout est intégré dans le code, écrit pour votre besoin précis, testé ensemble. Une mise à jour technique a lieu une fois par trimestre, planifiée, sans surprise.</p>
+
+<h2 id="secu"><span class="num">05.</span> Les failles de sécurité et le piratage</h2>
+
+<p>WordPress fait tourner <strong>43% des sites du web</strong>. C'est sa force commerciale. C'est aussi sa principale faiblesse : il est <strong>la cible préférée des hackers</strong>.</p>
+
+<div class="stat-box">
+    <div class="stat-value">90 000</div>
+    <div class="stat-label">attaques par minute ciblent des sites WordPress dans le monde, selon Wordfence (2024).</div>
+</div>
+
+<p>Les vecteurs d'attaque sont presque toujours les mêmes :</p>
+
+<ul>
+    <li>Un plugin obsolète avec une faille connue</li>
+    <li>Un mot de passe admin trop simple</li>
+    <li>Un thème nulled (gratuit-piraté) qui contient une porte dérobée</li>
+</ul>
+
+<p>Quand votre site se fait pirater — et ça arrive à 1 photographe sur 8 selon les chiffres des hébergeurs français — vous découvrez ça quand un client vous appelle pour vous dire que votre page d'accueil affiche un message en russe vendant du Viagra.</p>
+
+<p>Pendant 3 à 5 jours, vous êtes invisible sur Google, et il faut payer un prestataire 300 à 800 € pour nettoyer la base de données et restaurer une sauvegarde.</p>
+
+<h2 id="agenda"><span class="num">06.</span> L'agenda de réservation : un patchwork instable</h2>
+
+<p>Pour qu'un client puisse réserver un shooting en ligne sur votre site, il faut typiquement <strong>connecter 3 outils différents</strong> :</p>
+
+<ul class="x-list">
+    <li><strong>Un plugin de réservation</strong> WordPress (Bookly, Amelia : 30-89 €/an)</li>
+    <li><strong>Calendly</strong> ou équivalent pour la synchro Google Calendar (12-15 €/mois)</li>
+    <li><strong>Stripe</strong> ou PayPal pour l'acompte (commission par transaction)</li>
+</ul>
+
+<p>Trois outils qui ne se parlent pas naturellement, qui doivent être synchronisés à la main, et où à chaque mise à jour de l'un, l'autre peut casser.</p>
+
+<p>Une plateforme métier pour photographe intègre nativement : <strong>un agenda visuel avec dates bloquées, un formulaire de réservation par prestation, un acompte Stripe automatique, un email de confirmation, et une synchronisation Google Calendar / iCal</strong>. Un seul système, un seul login, un seul code à maintenir.</p>
+
+<h2 id="cout"><span class="num">07.</span> Le vrai coût total sur 3 ans</h2>
+
+<p>Faisons le compte honnête. Un photographe pro qui utilise WordPress avec les outils satellites typiques paie chaque année :</p>
+
+<ul>
+    <li>Hébergement (OVH / O2switch) : <strong>60 €</strong></li>
+    <li>Thème WordPress premium (renouvellement) : <strong>69 €</strong></li>
+    <li>Plugins payants (cumul Yoast, WP Rocket, formulaires…) : <strong>180 €</strong></li>
+    <li>Pixieset ou Pic-Time (galerie privée) : <strong>480 €</strong></li>
+    <li>Calendly (agenda) : <strong>180 €</strong></li>
+    <li>Maintenance technique freelance (2 interventions/an) : <strong>240 €</strong></li>
+    <li>Réparation après piratage (1 fois tous les 2-3 ans, lissé) : <strong>120 €</strong></li>
+</ul>
+
+<div class="stat-box">
+    <div class="stat-value">1 329 € / an</div>
+    <div class="stat-label">soit 3 987 € sur 3 ans, pour un site dont vous n'êtes jamais 100% maître.</div>
+</div>
+
+<p>Le même périmètre fonctionnel, en plateforme métier pensée pour vous : <strong>3 000 € en one-shot</strong>, + 50 €/mois de maintenance optionnelle (600 €/an, incluant les sauvegardes, les mises à jour de sécurité, le support). Soit <strong>4 800 € sur 3 ans</strong>, avec un site sur-mesure, sans abonnements multiples, sans plugins, sans piratage.</p>
+
+<p>L'écart financier est faible, mais l'écart qualitatif est énorme : <strong>vous arrêtez de bricoler. Votre site travaille pour vous, plutôt que l'inverse.</strong></p>
+
+<h2>Alors, faut-il quitter WordPress ?</h2>
+
+<p>Pas si votre site actuel vous suffit et que vous y passez moins d'1 heure par mois. Si c'est le cas, gardez-le. Aucun outil ne mérite qu'on change pour le plaisir de changer.</p>
+
+<p>Mais si vous vous reconnaissez dans une ou plusieurs des phrases suivantes :</p>
+
+<ul class="check-list">
+    <li>« Mon site, je n'y touche pas, c'est mon mari/ma femme/mon neveu qui s'en occupe »</li>
+    <li>« J'aimerais bien vendre mes tirages en ligne, mais c'est trop compliqué à mettre en place »</li>
+    <li>« Je paye Pixieset 480 € par an, ça m'agace »</li>
+    <li>« J'envoie mes galeries par WeTransfer, mes clients perdent toujours le lien »</li>
+    <li>« Mon site a été piraté l'année dernière »</li>
+    <li>« Je voudrais que les clients puissent réserver en ligne mais j'ai peur d'installer un plugin »</li>
+</ul>
+
+<p>… alors WordPress est sans doute en train de vous coûter du temps, de l'argent, et des clients. Il existe une autre manière de faire.</p>
+
+<p>Un site métier dédié à votre activité, pensé pour vous, codé pour vous, propre, rapide, et sans abonnement multiple. <strong>C'est ce que je construis depuis deux ans.</strong> Si ça résonne, on peut en parler.</p>
+
+</main>
+
+<section class="final-cta">
+    <div class="final-cta-inner">
+        <h2>Curieux de voir à quoi ça <span class="gold">ressemble</span> ?</h2>
+        <p>J'ai construit une plateforme web complète pensée spécifiquement pour les photographes professionnels. Galerie privée, boutique de tirages, agenda de réservation, blog SEO, espace client — tout intégré, sans abonnement multiple.</p>
+        <a href="studio-photo.html" class="btn-cta">📸 Découvrir la démo Studio Photo</a>
+        <a href="https://calendly.com/evanorofino-pro/20min" class="btn-ghost" target="_blank" rel="noopener">Réserver 20 min</a>
+    </div>
+</section>
+
+<div class="author">
+    <div class="author-avatar">E</div>
+    <div class="author-info">
+        <h3>Evan Orofino</h3>
+        <p>Développeur Symfony freelance à Lyon. Je construis des sites métier pour les pros qui veulent arrêter de bricoler.</p>
+        <div class="links">
+            <a href="index.html">Portfolio</a>
+            <a href="https://github.com/EvanOROFINO" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:evanorofino.pro@gmail.com">Me contacter</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>© 2026 Evan Orofino · <a href="index.html">Portfolio</a> · <a href="studio-photo.html">Studio Photo</a></p>
+</footer>
+
+</body>
+</html>
