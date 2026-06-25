@@ -285,24 +285,25 @@
                 </div>
             </article>
 
-            <!-- PROJET 3 : Studio Photo -->
+            <!-- PROJET 3 : Studio Photo + Vidéo (multi-site) -->
             <article class="project-card">
                 <div class="project-image project-image-studio">
                     <div class="project-overlay">
-                        <span class="project-overlay-text">📸 Studio Photo</span>
+                        <span class="project-overlay-text">📸 Studio Photo &amp; 🎬 Vidéo</span>
                     </div>
                 </div>
                 <div class="project-content">
                     <div class="project-header">
-                        <h3 class="project-title">Studio Photo</h3>
-                        <span class="project-badge project-badge-new">✨ NOUVEAU</span>
+                        <h3 class="project-title">Studio Photo &amp; Vidéo</h3>
+                        <span class="project-badge project-badge-new">✨ MULTI-SITE</span>
                     </div>
-                    <p class="project-tagline">Plateforme métier complète pour photographe pro</p>
+                    <p class="project-tagline">Plateforme métier multi-site pour photographe &amp; vidéaste pro</p>
                     <p class="project-description">
-                        Solution tout-en-un pour photographes : site vitrine, galerie privée client sécurisée
-                        (token + mot de passe), réservation en ligne avec acompte Stripe, calendrier de
-                        disponibilités, blog SEO, boutique de tirages d'art et dashboard analytics.
-                        20 fonctionnalités, 19 entités Doctrine, 49 tests automatisés.
+                        Solution tout-en-un pilotant <strong>2 sites distincts</strong> (Studio Photo + Studio Vidéo)
+                        depuis une <strong>seule application Symfony</strong> et un <strong>admin commun</strong> :
+                        détection automatique du site par domaine, galerie privée client, réservation Stripe,
+                        showreel filtrable, forfaits vidéo gérables, blog SEO, boutique et dashboard analytics.
+                        24 entités Doctrine, architecture multi-site sur-mesure.
                     </p>
                     <div class="project-tech">
                         <span class="tech-pill">Symfony 7.4</span>
@@ -310,15 +311,16 @@
                         <span class="tech-pill">MySQL</span>
                         <span class="tech-pill">EasyAdmin 5</span>
                         <span class="tech-pill">Stripe</span>
+                        <span class="tech-pill">Multi-site</span>
                         <span class="tech-pill">PHPUnit</span>
                         <span class="tech-pill">GitHub Actions</span>
                     </div>
                     <ul class="project-features">
-                        <li>Galerie privée client (token + ZIP download)</li>
-                        <li>Paiement Stripe Checkout (acompte 30%) + boutique tirages avec codes promo</li>
-                        <li>Calendrier FullCalendar des disponibilités</li>
-                        <li>Dashboard analytics (8 KPI + 6 graphiques Chart.js)</li>
-                        <li>Multi-langue FR/EN, mode sombre, conformité RGPD</li>
+                        <li><strong>Architecture multi-site</strong> : 2 sites, 1 app, 1 admin (détection par domaine via EventListener)</li>
+                        <li>Site Vidéo : showreel filtrable par catégorie + forfaits vidéo (Essentiel/Signature/Prestige)</li>
+                        <li>Galerie privée client (token + ZIP) + paiement Stripe (acompte 30%)</li>
+                        <li>Boutique de tirages, calendrier FullCalendar, blog SEO</li>
+                        <li>Dashboard analytics (8 KPI + Chart.js), multi-langue FR/EN, mode sombre</li>
                         <li>49 tests PHPUnit verts + CI GitHub Actions</li>
                     </ul>
                     <div class="project-links">
